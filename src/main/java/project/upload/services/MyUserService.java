@@ -56,7 +56,7 @@ public class MyUserService implements MyUserServiceInterface{
 	public MyUserDto getJwtConnect(Credential credential) throws Exception{
 		MyUserDto myUserDto = null;
 		try {
-			MyUser myUser = myUserRepository.findByLogin(credential.getLogin());
+			MyUser myUser = myUserRepository.findByLoginIgnoreCase(credential.getLogin());
 			if(testConnection(credential, myUser)) {
 				myUserDto = myUserTransformer.getJwtConnect(myUser);
 			}
@@ -72,7 +72,7 @@ public class MyUserService implements MyUserServiceInterface{
 		MyUserDto myUserDto = null;
 		try {
 			login = jwtClaims.getSubject();
-			MyUser myUser = myUserRepository.findByLogin(login);
+			MyUser myUser = myUserRepository.findByLoginIgnoreCase(login);
 			myUserDto = myUserTransformer.getMyUserMySpaceJwt(myUser);
 			
 		} catch (MalformedClaimException e) {

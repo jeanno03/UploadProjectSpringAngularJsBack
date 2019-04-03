@@ -1,5 +1,7 @@
 package project.upload.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import project.upload.dtos.MyUserDto;
 import project.upload.models.MyUser;
@@ -77,6 +81,21 @@ public class TestController {
 		else {
 			return new ResponseEntity<>(myUserDto, HttpStatus.OK);
 		}
+	}
+
+	//http://localhost:8080/Test/uploadingPost
+	//https://hellokoding.com/uploading-multiple-files-example-with-spring-boot/
+    @RequestMapping(value = "/Test/uploadingPost", method = RequestMethod.POST)
+    public String uploadingPost(@RequestParam("uploadingFiles") MultipartFile[] uploadingFiles) throws IOException{
+
+		String uploadingDir = "/home/jeanno/PromoArtistFile/";
+		
+        for(MultipartFile uploadedFile : uploadingFiles) {
+            File file = new File(uploadingDir + uploadedFile.getOriginalFilename());
+            uploadedFile.transferTo(file);
+        }
+		
+		return "success";
 	}
 	
 

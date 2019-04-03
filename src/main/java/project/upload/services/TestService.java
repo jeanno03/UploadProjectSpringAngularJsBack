@@ -1,7 +1,13 @@
 package project.upload.services;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
@@ -24,8 +30,8 @@ import project.upload.transformers.MyUserTransformerInterface;
 public class TestService implements TestServiceInterface{
 	
 	@Autowired
-	
 	private MyUserRepository myUserRepository;
+	
 	@Autowired
 	private MyUserServiceInterface myUserService;
 	
@@ -63,15 +69,17 @@ public class TestService implements TestServiceInterface{
 		mySpace3.setMyUser(myUser2);
 		mySpace4.setMyUser(myUser2);
 		
-		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018", "Home/utilisateur-1/", "Albator-005.pdf");
-		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018", "Home/utilisateur-1/", "Albator-006.pdf");
-		MyFile myFile3 = new MyFile ("mon dessin de chien", "Home/utilisateur-1/", "Albator-007.png");
-		MyFile myFile4 = new MyFile ("ma photo de phoque", "Home/utilisateur-1/", "Albator-008.png");
+		Date myDate = new Date();
 		
-		MyFile myFile5 = new MyFile ("Naruto 1", "Home/utilisateur-2/", "Dartagnan-001.pdf");
-		MyFile myFile6 = new MyFile ("Naruto 2", "Home/utilisateur-2/", "Dartagnan-002.pdf");
-		MyFile myFile7 = new MyFile ("Serval 1", "Home/utilisateur-2/", "Dartagnan-003.pdf");
-		MyFile myFile8 = new MyFile ("Serval 2", "Home/utilisateur-2/", "Dartagnan-004.pdf");
+		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018.pdf", "Home/utilisateur-1/", "Albator-005.pdf", myDate);
+		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018.pdf", "Home/utilisateur-1/", "Albator-006.pdf", myDate);
+		MyFile myFile3 = new MyFile ("mon dessin de chien.png", "Home/utilisateur-1/", "Albator-007.png", myDate);
+		MyFile myFile4 = new MyFile ("ma photo de phoque.png", "Home/utilisateur-1/", "Albator-008.png", myDate);
+		
+		MyFile myFile5 = new MyFile ("Naruto 1.pdf", "Home/utilisateur-2/", "Dartagnan-001.pdf", myDate);
+		MyFile myFile6 = new MyFile ("Naruto 2.pdf", "Home/utilisateur-2/", "Dartagnan-002.pdf", myDate);
+		MyFile myFile7 = new MyFile ("Serval 1.pdf", "Home/utilisateur-2/", "Dartagnan-003.pdf", myDate);
+		MyFile myFile8 = new MyFile ("Serval 2.pdf", "Home/utilisateur-2/", "Dartagnan-004.pdf", myDate);
 		
 		MyRole myRole1 = new MyRole("utilisateur");
 		MyRole myRole2 = new MyRole("gestionaire");
@@ -108,8 +116,8 @@ public class TestService implements TestServiceInterface{
 		myRoleRepository.save(myRole2);
 		myRoleRepository.save(myRole3);
 				
-		MyUser bddMyUser1 = myUserRepository.findByLogin("Albator");
-		MyUser bddMyUser2 = myUserRepository.findByLogin("Dartagnan");
+		MyUser bddMyUser1 = myUserRepository.findByLoginIgnoreCase("Albator");
+		MyUser bddMyUser2 = myUserRepository.findByLoginIgnoreCase("Dartagnan");
 		
 		List<MyRole> bddMyRoles1 = (List<MyRole>) myRoleRepository.findAll();
 		
@@ -138,7 +146,7 @@ public class TestService implements TestServiceInterface{
 		String credentialSha3 = getStringSha3(credential.getPassword());
 		try {
 			
-			MyUser myUser = myUserRepository.findByLogin(credential.getLogin());
+			MyUser myUser = myUserRepository.findByLoginIgnoreCase(credential.getLogin());
 			
 			if(myUserService.testConnection(credential, myUser)) {
 				myUserDto = myUserTransformer.getMyUserDtoFullDatas(myUser);

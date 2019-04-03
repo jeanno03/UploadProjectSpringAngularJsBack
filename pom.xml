@@ -24,11 +24,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<!-- 		API Rest de Spring annulé -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-data-rest</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- API Rest de Spring annulé -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-data-rest</artifactId> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -52,6 +52,7 @@
 			<version>1.56</version>
 		</dependency>
 
+		<!-- Pour le jwt -->
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -66,6 +67,7 @@
 			<version>0.6.5</version>
 		</dependency>
 
+		<!-- Pour la manipulation de json -->
 		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -87,6 +89,13 @@
 			<version>2.9.8</version>
 		</dependency>
 
+<!-- pour le téléchargement -->
+<!-- https://hellokoding.com/uploading-multiple-files-example-with-spring-boot/ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        
 	</dependencies>
 
 

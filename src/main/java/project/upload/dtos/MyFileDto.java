@@ -1,22 +1,26 @@
 package project.upload.dtos;
 
+import java.util.Date;
+
 public class MyFileDto {
 	
 	private Long id;
 	private String name;
 	private String path;
 	private String reName;
+	private Date uploadDate;
 	
 	public MyFileDto() {
 		super();
 	}
 	
-	public MyFileDto(Long id, String name, String path, String reName) {
+	public MyFileDto(Long id, String name, String path, String reName, Date uploadDate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.path = path;
 		this.reName = reName;
+		this.uploadDate = uploadDate;
 	}
 	
 	public Long getId() {
@@ -50,10 +54,19 @@ public class MyFileDto {
 	public void setReName(String reName) {
 		this.reName = reName;
 	}
-	
+
+	public Date getUploadDate() {
+		return uploadDate;
+	}
+
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+
 	@Override
 	public String toString() {
-		return "MyFileDto [id=" + id + ", name=" + name + ", path=" + path + ", reName=" + reName + "]";
+		return "MyFileDto [id=" + id + ", name=" + name + ", path=" + path + ", reName=" + reName + ", uploadDate="
+				+ uploadDate + "]";
 	}
 
 }

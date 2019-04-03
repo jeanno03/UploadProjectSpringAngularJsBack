@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface MyUserRepository extends JpaRepository<MyUser,Long>{
 	
 	Optional<MyUser> findById(Long id);
-	MyUser findByLogin(String login);
+	MyUser findByLoginIgnoreCase(String login);
 
 }

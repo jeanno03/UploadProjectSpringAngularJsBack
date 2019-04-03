@@ -42,7 +42,7 @@ public class MyUserTransformer implements MyUserTransformerInterface{
 				List<MyFileDto> myFilesDto = new ArrayList();
 				
 				myFiles.forEach(m2->{
-					MyFileDto myFileDto = new MyFileDto(m2.getId(),m2.getName(),m2.getPath(),m2.getReName());
+					MyFileDto myFileDto = new MyFileDto(m2.getId(),m2.getName(),m2.getPath(),m2.getReName(),m2.getUploadDate());
 					myFilesDto.add(myFileDto);
 					
 				});
@@ -93,7 +93,7 @@ public class MyUserTransformer implements MyUserTransformerInterface{
 				List<MyFileDto> myFilesDto = new ArrayList();
 				
 					myFiles.forEach(m2->{
-					MyFileDto myFileDto = new MyFileDto(m2.getId(),m2.getName(),m2.getPath(),m2.getReName());
+					MyFileDto myFileDto = new MyFileDto(m2.getId(),m2.getName(),m2.getPath(),m2.getReName(),m2.getUploadDate());
 					myFilesDto.add(myFileDto);
 					});
 					mySpaceDto.setMyFilesDto(myFilesDto);				
