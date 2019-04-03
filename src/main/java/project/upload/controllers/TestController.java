@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import project.upload.services.MyUserServiceInterface;
 import project.upload.services.TestServiceInterface;
 import project.upload.tools.Credential;
 import project.upload.tools.MyConstant;
+import project.upload.tools.UploadFormTest;
 
 @RestController
 @CrossOrigin("*")
@@ -84,13 +86,15 @@ public class TestController {
 	}
 
 	//http://localhost:8080/Test/uploadingPost
-	//https://hellokoding.com/uploading-multiple-files-example-with-spring-boot/
+	//https://o7planning.org/fr/11673/le-exemple-de-upload-file-avec-spring-boot-rest-et-angularjs
     @RequestMapping(value = "/Test/uploadingPost", method = RequestMethod.POST)
-    public String uploadingPost(@RequestParam("uploadingFiles") MultipartFile[] uploadingFiles) throws IOException{
-
-		String uploadingDir = "/home/jeanno/PromoArtistFile/";
+    public String uploadingPost(@ModelAttribute UploadFormTest form) throws IOException{
+		String uploadingDir = MyConstant.PATH_DIRECTORY;
 		
-        for(MultipartFile uploadedFile : uploadingFiles) {
+		System.out.println("API /Test/uploadingPost");
+		System.out.println("description : " + form.getDescription());
+		
+        for(MultipartFile uploadedFile : form.getFiles()) {
             File file = new File(uploadingDir + uploadedFile.getOriginalFilename());
             uploadedFile.transferTo(file);
         }

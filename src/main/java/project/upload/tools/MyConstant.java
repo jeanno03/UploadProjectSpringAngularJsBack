@@ -8,6 +8,7 @@ public interface MyConstant {
 	static final String DOMAIN = "https://myuploadapp.com";
 	static final String ROLES = "roles";
 	static final String FORBIDDEN ="403-forbidden";
-	static final String UPLOAD_NAME ="uploadName";
+//	static final String UPLOAD_NAME ="uploadName";
+	static final String PATH_DIRECTORY ="/home/jeanno/UploadProject/";
 
 }

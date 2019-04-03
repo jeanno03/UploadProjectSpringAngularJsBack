@@ -11,5 +11,6 @@ import project.upload.models.MySpace;
 public interface MySpaceRepository extends JpaRepository<MySpace,Long>{
 	
 	List<MySpace> findByMyUserLogin(String login);
+	MySpace findByName(String name);
 
 }
