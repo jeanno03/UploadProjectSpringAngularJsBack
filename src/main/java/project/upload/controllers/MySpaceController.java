@@ -68,5 +68,27 @@ public class MySpaceController {
 	}
 	
 	
+	//va retourner tous les mySpace en fonction du loggin requete native
+	//http://localhost:8080/MySpace/getAllMySpaceJwt
+	@RequestMapping(produces="application/json", value="MySpace/getAllMySpaceJwt", method=RequestMethod.GET)
+	public ResponseEntity<?>getAllMySpace(@RequestHeader String token) {
+		
+		try {
+			
+			JwtClaims jwtClaims = jwtService.testJwt(token);			
+			String login = jwtClaims.getSubject();
+			List<MySpace> mySpaces = mySpaceRepository.selectMySpaceFromMyUser(login);
+			
+			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
+			
+		}catch(Exception ex) {
+		ex.printStackTrace();	
+		}
+		
+		HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
+		return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
+	}
+	
+	
 
 }

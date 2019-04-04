@@ -89,13 +89,28 @@
 			<version>2.9.8</version>
 		</dependency>
 
-<!-- pour le téléchargement -->
-<!-- https://hellokoding.com/uploading-multiple-files-example-with-spring-boot/ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-        
+		<!-- pour le téléchargement -->
+		<!-- https://hellokoding.com/uploading-multiple-files-example-with-spring-boot/ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
+		<!-- Test scope dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.4.0-M1</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.upload.dtos.MyUserDto;
+import project.upload.models.MySpace;
 import project.upload.models.MyUser;
+import project.upload.reporitories.MySpaceRepository;
 import project.upload.reporitories.MyUserRepository;
 import project.upload.services.JwtServiceInterface;
 import project.upload.services.MyUserServiceInterface;
@@ -33,6 +35,8 @@ import project.upload.tools.UploadFormTest;
 public class TestController {
 	
 	private MyUserRepository myUserRepository;
+	
+	private MySpaceRepository mySpaceRepository;
 
 	@Autowired
 	private MyUserServiceInterface myUserService;
@@ -43,9 +47,10 @@ public class TestController {
 	@Autowired
 	private JwtServiceInterface jwtService;
 
-	public TestController(MyUserRepository myUserRepository) {
+	public TestController(MyUserRepository myUserRepository, MySpaceRepository mySpaceRepository) {
 		super();
 		this.myUserRepository = myUserRepository;
+		this.mySpaceRepository = mySpaceRepository;
 	}
 	
 	//http://localhost:8080/Test/getDataTest
@@ -101,6 +106,13 @@ public class TestController {
 		
 		return "success";
 	}
+    
+	//http://localhost:8080/Test/getTestCustomQueryMySpace
+    @RequestMapping(value="/Test/getTestCustomQueryMySpace", method=RequestMethod.GET) 
+    public List<MySpace> getTestCustomQueryMySpace(){
+    	List<MySpace> mySpaces = mySpaceRepository.selectMySpaceFromMyUser("dartagnan");
+    	return mySpaces;
+    }
 	
 
 }

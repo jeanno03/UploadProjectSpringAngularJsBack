@@ -68,9 +68,9 @@ public class MyUserController {
 
 		}
 	}
-
-	//si token ok 
-	//return myUser datas of mySpace
+	
+	//méthod consommant trop de ressource point de vue requete sql // a ne pas utiliser
+	//si token ok ==> return myUser datas of mySpace
 	//http://localhost:8080/MyUser/getMyUserMySpaceJwt
 	@RequestMapping(produces ="application/json", value="MyUser/getMyUserMySpaceJwt", method=RequestMethod.GET)
 	public ResponseEntity<?>getMyUserMySpaceJwt(@RequestHeader String token){
@@ -78,6 +78,7 @@ public class MyUserController {
 		try {
 			
 		JwtClaims jwtClaims = jwtService.testJwt(token);
+		//méthod consommant trop de ressource point de vue requete sql // a ne pas utiliser
 		MyUserDto myUserDto = myUserService.getMyUserMySpaceJwt(jwtClaims);
 		System.out.println("jwtClaims.getSubject() : " + jwtClaims.getSubject());
 		if(myUserDto!=null) {

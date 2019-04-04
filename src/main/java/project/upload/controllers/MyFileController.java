@@ -2,11 +2,16 @@ package project.upload.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import org.jose4j.jwt.JwtClaims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import project.upload.models.MyFile;
 import project.upload.reporitories.MyFileRepository;
+import project.upload.services.HttpServiceInterface;
+import project.upload.services.JwtServiceInterface;
 import project.upload.services.MyFileServiceInterface;
 import project.upload.tools.MyConstant;
 import project.upload.tools.UploadFormTest;
@@ -26,6 +33,12 @@ public class MyFileController {
 	
 	@Autowired
 	private MyFileServiceInterface myFileService;
+	
+	@Autowired
+	private JwtServiceInterface jwtService;
+	
+	@Autowired
+	private HttpServiceInterface httpService;
 
 	public MyFileController(MyFileRepository myFileRepository) {
 		super();
@@ -43,6 +56,25 @@ public class MyFileController {
 
 		return "success";
 	}
+    
+  //va retourner tous les myFiles en fonction du mySpace name requete native
+  //http://localhost:8080/MyFile/getAllFilesFromMySpace
+    @RequestMapping(produces="application/json",value="MyFile/getAllFilesFromMySpace", method=RequestMethod.GET)
+    public ResponseEntity<?>getAllFilesFromMySpace(@RequestHeader String token, String name){
+    	
+    	try {
+    		JwtClaims jwtClaims = jwtService.testJwt(token);
+    		List<MyFile> myFiles = myFileRepository.selectMyFilesFromMySpace(name) ;
+    		return new ResponseEntity<>(myFiles, HttpStatus.OK);
+    		
+    	}catch(Exception ex) {
+    		ex.printStackTrace();
+    	}
+    	
+    	HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
+    	return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
+    	
+    }
 	
 	
 
