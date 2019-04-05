@@ -49,13 +49,13 @@ public class MySpaceController {
 	//va retourner la liste de tous les mySpaces
 	//http://localhost:8080/MySpace/createMySpace
 	@RequestMapping(produces="application/json", value="MySpace/createMySpace", method=RequestMethod.POST)
-	public ResponseEntity<?>createMySpace(@RequestHeader String token, @RequestBody String mySpaceName){
+	public ResponseEntity<?>createMySpace(@RequestHeader String token, @RequestBody MySpace mySpace){
 	
 		try {
 			JwtClaims jwtClaims = jwtService.testJwt(token)	;		
 			
 			String login = jwtClaims.getSubject();
-			List<MySpace> mySpaces = mySpaceService.createMySpaceFromMyUser(login, mySpaceName);
+			List<MySpace> mySpaces = mySpaceService.createMySpaceFromMyUser(login, mySpace);
 			
 			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
 

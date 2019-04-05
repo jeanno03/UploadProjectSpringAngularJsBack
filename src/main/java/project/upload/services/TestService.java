@@ -51,17 +51,19 @@ public class TestService implements TestServiceInterface{
 	public String getDataTest() {
 		try {
 			
+			Date myDate = new Date();
+			
 		String password = "12345678";
 		String passwordSha3 = getStringSha3(password);
 
 		MyUser myUser1 = new MyUser ("Albator" , passwordSha3, "albaltor@gmail.com");
 		MyUser myUser2 = new MyUser ("Dartagnan" , passwordSha3, "artos@gmail.com");
 		
-		MySpace mySpace1 = new MySpace("Professionnel");
-		MySpace mySpace2 = new MySpace("Personnel");
+		MySpace mySpace1 = new MySpace("Professionnel", "espace de stockage pro.", myDate);
+		MySpace mySpace2 = new MySpace("Personnel", "espace de stockage preso.", myDate);
 		
-		MySpace mySpace3 = new MySpace("Manga");
-		MySpace mySpace4 = new MySpace("Comics");
+		MySpace mySpace3 = new MySpace("Manga", "espace pour mes mangas.", myDate);
+		MySpace mySpace4 = new MySpace("Comics", "espace dpour mes comics.", myDate);
 		
 		mySpace1.setMyUser(myUser1);
 		mySpace2.setMyUser(myUser1);
@@ -69,7 +71,7 @@ public class TestService implements TestServiceInterface{
 		mySpace3.setMyUser(myUser2);
 		mySpace4.setMyUser(myUser2);
 		
-		Date myDate = new Date();
+		
 		
 		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018.pdf", "Home/utilisateur-1/", "Albator-005.pdf", myDate);
 		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018.pdf", "Home/utilisateur-1/", "Albator-006.pdf", myDate);

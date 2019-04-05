@@ -6,6 +6,6 @@ import project.upload.models.MySpace;
 
 public interface MySpaceServiceInterface {
 	
-	List<MySpace> createMySpaceFromMyUser(String login, String name);
+	List<MySpace> createMySpaceFromMyUser(String login, MySpace mySpace);
 
 }

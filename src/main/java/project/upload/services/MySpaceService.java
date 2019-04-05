@@ -1,5 +1,6 @@
 package project.upload.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,15 @@ public class MySpaceService implements MySpaceServiceInterface{
 	@Autowired
 	private MyUserRepository myUserRepository;
 
-	public List<MySpace> createMySpaceFromMyUser(String login, String name){
+	public List<MySpace> createMySpaceFromMyUser(String login, MySpace mySpace){
 		MyUser myUser =null;
 		try {
 
+			Date myDate = new Date();
+			
 			myUser = myUserRepository.findByLoginIgnoreCase(login);
 
-			MySpace mySpace = new MySpace(name);
+			MySpace mySpaceToSave = new MySpace(mySpace.getName(), mySpace.getDescription(), myDate);
 
 			mySpace.setMyUser(myUser);
 

@@ -19,7 +19,7 @@ public class MySpaceTransformer implements MySpaceTransformerInterface{
 		List<MySpaceDto> mySpacesDto = new ArrayList();
 		
 		mySpaces.forEach(m->{
-			MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName());
+			MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName(), m.getDescription(), m.getCreation());
 			mySpacesDto.add(mySpaceDto);
 		});
 		

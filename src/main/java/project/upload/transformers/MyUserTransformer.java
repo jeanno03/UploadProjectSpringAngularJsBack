@@ -36,7 +36,7 @@ public class MyUserTransformer implements MyUserTransformerInterface{
 			
 			mySpaces.forEach(m->{
 				
-				MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName());
+				MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName(), m.getDescription(), m.getCreation());
 				
 				List<MyFile> myFiles = (List<MyFile>) m.getMyFiles();
 				List<MyFileDto> myFilesDto = new ArrayList();
@@ -87,7 +87,7 @@ public class MyUserTransformer implements MyUserTransformerInterface{
 			List<MySpace> mySpaces = (List<MySpace>)myUser.getMySpaces();
 			List <MySpaceDto> mySpacesDto = new ArrayList() ;
 			mySpaces.forEach(m->{
-				MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName());
+				MySpaceDto mySpaceDto = new MySpaceDto(m.getId(),m.getName(), m.getDescription(), m.getCreation());
 				
 				List<MyFile> myFiles = (List<MyFile>) m.getMyFiles();
 				List<MyFileDto> myFilesDto = new ArrayList();

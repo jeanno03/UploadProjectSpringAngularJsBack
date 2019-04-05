@@ -1,12 +1,15 @@
 package project.upload.dtos;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 public class MySpaceDto {
 
 	private Long id;
 	private String name;
+	private String description;
+	private Date creation;
 	
 	private Collection<MyFileDto> myFilesDto;
 	
@@ -14,13 +17,15 @@ public class MySpaceDto {
 		super();
 		myFilesDto = new HashSet();
 	}
-	
-	public MySpaceDto(Long id, String name) {
+
+	public MySpaceDto(Long id, String name, String description, Date creation) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.description = description;
+		this.creation = creation;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -37,6 +42,22 @@ public class MySpaceDto {
 		this.name = name;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getCreation() {
+		return creation;
+	}
+
+	public void setCreation(Date creation) {
+		this.creation = creation;
+	}
+
 	public Collection<MyFileDto> getMyFilesDto() {
 		return myFilesDto;
 	}
