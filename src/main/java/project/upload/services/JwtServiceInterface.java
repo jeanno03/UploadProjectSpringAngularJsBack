@@ -6,6 +6,7 @@ import project.upload.tools.Credential;
 
 public interface JwtServiceInterface {
 
-	String getConnectJwt(Credential credential);
+//	String getConnectJwt(Credential credential);
+	String getConnectReturnToken(Credential credential);
 	JwtClaims testJwt(String token);
 }

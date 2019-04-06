@@ -37,9 +37,6 @@ public class TestController {
 	private MyUserRepository myUserRepository;
 	
 	private MySpaceRepository mySpaceRepository;
-
-	@Autowired
-	private MyUserServiceInterface myUserService;
 	
 	@Autowired
 	private TestServiceInterface testService;

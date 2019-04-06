@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import org.bouncycastle.jcajce.provider.digest.SHA3;
+import org.bouncycastle.util.encoders.Hex;
 import org.jose4j.jwk.JsonWebKey;
 import org.jose4j.jwk.JsonWebKeySet;
 import org.jose4j.jwk.RsaJsonWebKey;
@@ -29,25 +31,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import project.upload.tools.Credential;
 import project.upload.tools.MyConstant;
 import project.upload.tools.MyStatic;
+import project.upload.transformers.MyRoleTransformerInterface;
 import project.upload.dtos.MyRoleDto;
-import project.upload.dtos.MyUserDto;
-import project.upload.services.MyUserService;
-import project.upload.services.MyUserServiceInterface;
+import project.upload.models.MyRole;
+import project.upload.models.MyUser;
+import project.upload.reporitories.MyRoleRepository;
+import project.upload.reporitories.MyUserRepository;
 
 @Service
 public class JwtService implements JwtServiceInterface{
 	
 	@Autowired
-	MyUserServiceInterface myUserService;
+	MyUserRepository myUserRepository;
 	
+	@Autowired
+	MyRoleRepository myRoleRepository;
+	
+	@Autowired
+	MyRoleTransformerInterface myRoleTransformer;
+
 	//MyStatics.jsonWebKeys est la list qui va controller les jwt
 	//se lance au démarrage de l'application
 	static {
-	
+
 		for(int i=0;i<3;i++) {
-			
+
 			JsonWebKey jsonWebKey=null;
-			
+
 			try {
 				int kid=i;
 
@@ -55,7 +65,7 @@ public class JwtService implements JwtServiceInterface{
 				jsonWebKey.setKeyId(String.valueOf(kid));
 				System.out.println(i);
 				MyStatic.jsonWebKeys.add(jsonWebKey);
-				
+
 			}catch(JoseException ex) {
 				ex.printStackTrace();
 			}catch(Exception ex) {
@@ -63,23 +73,24 @@ public class JwtService implements JwtServiceInterface{
 			}
 		}
 	}
+
 	
 	@Override
-	public String getConnectJwt(Credential credential){
+	public String getConnectReturnToken(Credential credential){
+
 		String jwt = null;
+
 		try {
-			MyUserDto myUserDto = myUserService.getJwtConnect(credential);
 			
-			List<MyRoleDto> myRolesDto = (List<MyRoleDto>) myUserDto.getMyRolesDto();
+			List<MyRoleDto> myRolesDto = jwtConnectReturnMyUserDto(credential);
 			List<String>rolesString=new ArrayList();
 			myRolesDto.forEach(m->{
 				rolesString.add(m.getName());
 			});
 			int kidRandom = generateRandmoKid();
-			
+
 			RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) MyStatic.jsonWebKeys.get(kidRandom);
-//			rsaJsonWebKey.setKeyId(String.valueOf(kidRandom));
-			
+
 			JwtClaims jwtClaims = new JwtClaims();
 			// Create the Claims, which will be the content of the JWT
 			//émetteur
@@ -88,7 +99,7 @@ public class JwtService implements JwtServiceInterface{
 			jwtClaims.setGeneratedJwtId();
 			jwtClaims.setIssuedAtToNow();
 			jwtClaims.setNotBeforeMinutesInThePast(2);
-			jwtClaims.setSubject(myUserDto.getLogin());
+			jwtClaims.setSubject(credential.getLogin());
 			jwtClaims.setStringListClaim(MyConstant.ROLES, rolesString);
 
 			JsonWebSignature jsonWebSignature = new JsonWebSignature();
@@ -99,107 +110,145 @@ public class JwtService implements JwtServiceInterface{
 
 			jsonWebSignature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
 
-	
 			try {
 				jwt=jsonWebSignature.getCompactSerialization();
 			}catch(JoseException ex) {
-	
+
 			}catch(Exception ex) {
-	
+
 			}
 
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-//		System.out.println("to Erase : *************************");
-//		testJwt(jwt);
-//		System.out.println("to Erase : *************************");
+
 		return jwt;
 	}
 	
+
 	@Override
 	public JwtClaims testJwt(String token) {
-//		boolean test = false;
-		JwtClaims jwtClaims = null;
-		try {
-		
-		//je recherche le kid
-		String[] tokenTab = decodeToken(token);
-		String headerEncoded = tokenTab[0];
-		System.out.println("headerEncoded : " + headerEncoded);
-		byte[] decodeBytesHeader = Base64.getUrlDecoder().decode(headerEncoded);
-		String decodeHeader = new String(decodeBytesHeader);
-		System.out.println("decodeHeader : " + decodeHeader);
-		
-		//parcours du dom
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode rootNode;
-		JsonNode idNode;
-		String kidV1=null;
-		try {
-			rootNode = objectMapper.readValue(decodeHeader, JsonNode.class);
-			idNode = rootNode.path("kid");
-			kidV1 = idNode.asText();
-			System.out.println("kidV1 : " + kidV1);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
-		//Je parcours MyStatic.jsonWebKeys en fonction du kid 
-		JsonWebKeySet jsonWebKeySet = new JsonWebKeySet(MyStatic.jsonWebKeys); 
-		JsonWebKey jsonWebKey = jsonWebKeySet.findJsonWebKey(kidV1, null,  null,  null);
-		System.out.println("JWK (" + kidV1 + ") ===> " + jsonWebKey.toJson());
-		// Validate Token's authenticity and check claims
-		JwtConsumer jwtConsumer = new JwtConsumerBuilder()
-				.setRequireExpirationTime() 
-				.setAllowedClockSkewInSeconds(30)
-				.setRequireSubject()
-				.setExpectedIssuer(MyConstant.DOMAIN)
-				.setVerificationKey(jsonWebKey.getKey())
-				.build();
-				
-		//Validate the JWT and process it to the Claims
-//		JwtClaims jwtClaims = null;
-		
-		try {
-			//contient tout le payload
-			jwtClaims = jwtConsumer.processToClaims(token);
 
-			System.out.println("JWT validation succeeded! " + jwtClaims);
-			
-			//jai besion du sub soit le login
-			String login = jwtClaims.getSubject();
-			System.out.println("login : " + login);
-		} catch (InvalidJwtException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		JwtClaims jwtClaims = null;
+
+		try {
+
+			//je recherche le kid
+			String[] tokenTab = decodeToken(token);
+			String headerEncoded = tokenTab[0];
+			System.out.println("headerEncoded : " + headerEncoded);
+			byte[] decodeBytesHeader = Base64.getUrlDecoder().decode(headerEncoded);
+			String decodeHeader = new String(decodeBytesHeader);
+			System.out.println("decodeHeader : " + decodeHeader);
+
+			//parcours du dom
+			ObjectMapper objectMapper = new ObjectMapper();
+			JsonNode rootNode;
+			JsonNode idNode;
+			String kidV1=null;
+			try {
+				rootNode = objectMapper.readValue(decodeHeader, JsonNode.class);
+				idNode = rootNode.path("kid");
+				kidV1 = idNode.asText();
+				System.out.println("kidV1 : " + kidV1);
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+			//Je parcours MyStatic.jsonWebKeys en fonction du kid 
+			JsonWebKeySet jsonWebKeySet = new JsonWebKeySet(MyStatic.jsonWebKeys); 
+			JsonWebKey jsonWebKey = jsonWebKeySet.findJsonWebKey(kidV1, null,  null,  null);
+			System.out.println("JWK (" + kidV1 + ") ===> " + jsonWebKey.toJson());
+			// Validate Token's authenticity and check claims
+			JwtConsumer jwtConsumer = new JwtConsumerBuilder()
+					.setRequireExpirationTime() 
+					.setAllowedClockSkewInSeconds(30)
+					.setRequireSubject()
+					.setExpectedIssuer(MyConstant.DOMAIN)
+					.setVerificationKey(jsonWebKey.getKey())
+					.build();
+
+			try {
+				//contient tout le payload
+				jwtClaims = jwtConsumer.processToClaims(token);
+
+				System.out.println("JWT validation succeeded! " + jwtClaims);
+
+			} catch (InvalidJwtException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 		return jwtClaims;
 	}
-	
+
 	private int generateRandmoKid() {
 		Random rand = new Random();
 		int randomKid = rand.nextInt(2);
 		return randomKid;
 
 	}
-	
+
 	private String[] decodeToken(String token) {
 		String[] tokenTab = token.split("\\.");
 		return tokenTab;
 	}
+	
+	private List<MyRoleDto> jwtConnectReturnMyUserDto(Credential credential) throws Exception{
+		List<MyRoleDto> myRolesDto = null;
+		try {
+			
+			//requete native
+			MyUser myUser = myUserRepository.selectMyUserByLogin(credential.getLogin());
+			
+			if(testConnection(credential, myUser)) {
+				
+				//requete native
+				List<MyRole> myRoles = myRoleRepository.selectMyRolesFromMyUser(credential.getLogin());
+				myRolesDto = myRoleTransformer.getMyRolesDtoFromMyUserLogin(myRoles);
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return myRolesDto;
+	}
+	
+	private boolean testConnection(Credential credential, MyUser myUser) throws Exception {
+		
+		Boolean test = false;		
+		String credentialSha3 = getStringSha3(credential.getPassword());
+		
+		try {
+		
+			if(credentialSha3.equals(myUser.getPassword())) {
+				test = true;
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return test;	
+	}
+	
+	//return password hashé
+	private String getStringSha3(String password) throws Exception { 
+	    SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512(); 
+	    byte[] digest = digestSHA3.digest(password.getBytes()); 
+	    return Hex.toHexString(digest);
+	}
+	
 
 }

@@ -48,7 +48,7 @@ private MySpaceRepository mySpaceRepository;
             
 
 	        //save to bdd
-            mySpace = mySpaceRepository.findByName(name);
+            mySpace = mySpaceRepository.findByNameIgnoreCase(name);
 			
 			Date date = new Date();
 			MyFile myFile = new MyFile(multipartFile[0].getOriginalFilename(), mySpace.getName() +""+login, login+"001",date);

@@ -56,25 +56,7 @@ public class MyFileController {
 
 		return "success";
 	}
-    
-  //va retourner tous les myFiles en fonction du mySpace name requete native
-  //http://localhost:8080/MyFile/getAllFilesFromMySpace
-    @RequestMapping(produces="application/json",value="MyFile/getAllFilesFromMySpace", method=RequestMethod.GET)
-    public ResponseEntity<?>getAllFilesFromMySpace(@RequestHeader String token, String name){
-    	
-    	try {
-    		JwtClaims jwtClaims = jwtService.testJwt(token);
-    		List<MyFile> myFiles = myFileRepository.selectMyFilesFromMySpace(name) ;
-    		return new ResponseEntity<>(myFiles, HttpStatus.OK);
-    		
-    	}catch(Exception ex) {
-    		ex.printStackTrace();
-    	}
-    	
-    	HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
-    	return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
-    	
-    }
+
 	
 	
 

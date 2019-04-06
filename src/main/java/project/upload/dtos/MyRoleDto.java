@@ -1,16 +1,22 @@
 package project.upload.dtos;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 public class MyRoleDto {
 	
 	private Long id;
 	private String name;
 	
+	private Collection<MyUserDto> myUsersDto;
+	
 	public MyRoleDto() {
 		super();
+		myUsersDto = new HashSet();
 	}
 
 	public MyRoleDto(Long id, String name) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 	}
@@ -29,6 +35,14 @@ public class MyRoleDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Collection<MyUserDto> getMyUsersDto() {
+		return myUsersDto;
+	}
+
+	public void setMyUsersDto(Collection<MyUserDto> myUsersDto) {
+		this.myUsersDto = myUsersDto;
 	}
 
 	@Override

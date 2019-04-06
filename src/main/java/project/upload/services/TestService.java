@@ -1,13 +1,8 @@
 package project.upload.services;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.ws.rs.core.MultivaluedMap;
 
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
@@ -24,16 +19,13 @@ import project.upload.reporitories.MyRoleRepository;
 import project.upload.reporitories.MySpaceRepository;
 import project.upload.reporitories.MyUserRepository;
 import project.upload.tools.Credential;
-import project.upload.transformers.MyUserTransformerInterface;
+import project.upload.transformers.TestTransformerInterface;
 
 @Service
 public class TestService implements TestServiceInterface{
 	
 	@Autowired
 	private MyUserRepository myUserRepository;
-	
-	@Autowired
-	private MyUserServiceInterface myUserService;
 	
 	@Autowired
 	private MySpaceRepository mySpaceRepository;
@@ -45,7 +37,7 @@ public class TestService implements TestServiceInterface{
 	private MyRoleRepository myRoleRepository;
 	
 	@Autowired
-	private MyUserTransformerInterface myUserTransformer;
+	private TestTransformerInterface testTransformer;
 
 	@Override
 	public String getDataTest() {
@@ -141,6 +133,7 @@ public class TestService implements TestServiceInterface{
 			return "Exception";
 		}
 	}
+	
 
 	@Override
 	public MyUserDto getMyUserDtoFullDatas(Credential credential) throws Exception {
@@ -150,8 +143,8 @@ public class TestService implements TestServiceInterface{
 			
 			MyUser myUser = myUserRepository.findByLoginIgnoreCase(credential.getLogin());
 			
-			if(myUserService.testConnection(credential, myUser)) {
-				myUserDto = myUserTransformer.getMyUserDtoFullDatas(myUser);
+			if(testConnection(credential, myUser)) {
+				myUserDto = testTransformer.getMyUserDtoFullDatas(myUser);
 			}
 			
 		}catch(Exception ex) {
@@ -184,5 +177,23 @@ public class TestService implements TestServiceInterface{
 	    byte[] digest = digestSHA3.digest(password.getBytes()); 
 	    return Hex.toHexString(digest);
 	} 
+	
+	private boolean testConnection(Credential credential, MyUser myUser) throws Exception {
+		
+		Boolean test = false;		
+		String credentialSha3 = getStringSha3(credential.getPassword());
+		
+		try {
+		
+			if(credentialSha3.equals(myUser.getPassword())) {
+				test = true;
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return test;	
+	}
 
 }
