@@ -95,7 +95,7 @@ public class JwtService implements JwtServiceInterface{
 			// Create the Claims, which will be the content of the JWT
 			//émetteur
 			jwtClaims.setIssuer(MyConstant.DOMAIN);
-			jwtClaims.setExpirationTimeMinutesInTheFuture(10);
+			jwtClaims.setExpirationTimeMinutesInTheFuture(120);
 			jwtClaims.setGeneratedJwtId();
 			jwtClaims.setIssuedAtToNow();
 			jwtClaims.setNotBeforeMinutesInThePast(2);

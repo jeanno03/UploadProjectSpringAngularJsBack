@@ -9,6 +9,6 @@ import project.upload.models.MyFile;
 
 public interface MyFileServiceInterface {
 	
-	List<MyFile> saveMyFile(String login, String name, MultipartFile[] multipartFile);
+	List<MyFileDto> saveMyFiles(String token,Long id,MultipartFile[] multipartFile);
 
 }

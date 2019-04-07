@@ -3,7 +3,9 @@ package project.upload.services;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.jose4j.jwt.JwtClaims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,57 +18,115 @@ import project.upload.reporitories.MyFileRepository;
 import project.upload.reporitories.MySpaceRepository;
 import project.upload.reporitories.MyUserRepository;
 import project.upload.tools.MyConstant;
+import project.upload.transformers.MyFileTransformer;
 
 @Service
 public class MyFileService implements MyFileServiceInterface{
 
-//@Autowired
-//private MyUserRepository myUserRepository;
+	@Autowired
+	private MyFileRepository myFileRepository;
 
-@Autowired
-private MyFileRepository myFileRepository;
+	@Autowired
+	private MySpaceRepository mySpaceRepository;
 
-@Autowired
-private MySpaceRepository mySpaceRepository;
+	@Autowired
+	private MyUserRepository myUserRepository;
+
+	@Autowired
+	private JwtServiceInterface jwtService;
+
+	@Autowired
+	private MyFileTransformer myFileTransformer;
+
 
 	@Override
-	public List<MyFile> saveMyFile(String login, String name, MultipartFile[] multipartFile) {
-		
-		MySpace mySpace =null;
-		List<MyFile> myFiles = null;
+	public List<MyFileDto> saveMyFiles(String token, Long id, MultipartFile[] multipartFile) {
+
+
+		List<MyFileDto> myFilesDto = null;
+
+		Date myDate = new Date();
+
+		try {
+			JwtClaims jwtClaims = jwtService.testJwt(token);
+			String login = jwtClaims.getSubject();
+
+			//requête native ==> pb impossible de faire set avec un objet obtenu depuis requete native
+			//			MySpace mySpace = mySpaceRepository.selectMySpaceById(id);
+
+			Optional<MySpace> mySpaceOptional = mySpaceRepository.findById(id);
+
+			MySpace mySpace = mySpaceOptional.get();
+
+			for(MultipartFile uploadedFile : multipartFile) {
+
+				//1 j'enregistre le fichier
+				MyFile myFile = new MyFile();
+				myFile.setName(uploadedFile.getOriginalFilename());
+
+				//voir si pas d'exception
+				myFile.setMySpace(mySpace);         	
+				myFileRepository.save(myFile);
+
+				//2 je récupère le dernier fichier enregistré par l'utilisateur pour créer reName + path
+				MyFile myLastFile = myFileRepository.selectMyLastFileFromMyUserLogin(login);
+
+				String reName = generateRename(login, mySpace, myLastFile);
+				myLastFile.setReName(reName);
+
+				String path = MyConstant.PATH_DIRECTORY + reName;
+				myLastFile.setPath(path);
+				myLastFile.setUploadDate(myDate);
+
+				//3 je sauvegarde dans bdd
+				myFileRepository.save(myLastFile);
+
+				//4 je sauvegarde dans disk dur
+
+				File file = new File(path);
+				uploadedFile.transferTo(file);
+
+				//5 Pause for 4 seconds
+				Thread.sleep(4000);
+
+			}
+
+			//6 je récupère les fichiers sauvegardé par mySpace.id
+			List<MyFile> myFiles = myFileRepository.selectMyFilesByMySpaceId(id);
+
+			//7 je créé myFilesDto
+			myFilesDto = myFileTransformer.getMySavedFilesDto(myFiles);
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			
+		}
+
+		return myFilesDto;
+
+	}
+
+	private String generateRename(String login, MySpace mySpace, MyFile myLastFile) {
+
+		MyUser myUser = myUserRepository.selectMyUserByLogin(login);
+
+		//pour avoir l'extension
+		String extension = "";
+
 		try {
 			
-			//save to disk
-            File file = new File(MyConstant.PATH_DIRECTORY + multipartFile[1].getOriginalFilename());
-            multipartFile[1].transferTo(file);
+			String[] parts = myLastFile.getName().split("\\.");
+			int size = parts.length;
+			extension = "." + parts[size-1];
 
-			//save to disk
-//            for(MultipartFile uploadedFile : multipartFile) {
-//                File file = new File(MyConstant.PATH_DIRECTORY + uploadedFile.getOriginalFilename());
-//                uploadedFile.transferTo(file);
-//            }
-            
 
-	        //save to bdd
-            mySpace = mySpaceRepository.findByNameIgnoreCase(name);
-			
-			Date date = new Date();
-			MyFile myFile = new MyFile(multipartFile[0].getOriginalFilename(), mySpace.getName() +""+login, login+"001",date);
-			myFile.setMySpace(mySpace);
-			
-			myFileRepository.save(myFile);
-			
-			//return myFile
-			myFiles = myFileRepository.findByMySpaceNameIgnoreCase(name);
-			
-			 
-			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		return myFiles;
-		
+
+		String reName = "my_user_"+myUser.getId()+"_my_space_"+mySpace.getId()+"_my_file_"+myLastFile.getId()+""+extension;
+
+		return reName;
 	}
 
 }
