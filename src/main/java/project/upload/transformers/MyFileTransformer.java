@@ -25,4 +25,10 @@ public class MyFileTransformer implements MyFileTransformerInterface{
 		return myFilesDto;
 }
 	
+	@Override
+	public MyFileDto getMyUploadingFileDto(MyFile myFile) {
+		MyFileDto myFileDto = new MyFileDto(myFile.getId(), myFile.getName(), myFile.getPath(), myFile.getReName(), myFile.getUploadDate());
+				return myFileDto;
+	}
+	
 }

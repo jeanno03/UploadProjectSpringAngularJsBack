@@ -19,6 +19,7 @@ import project.upload.reporitories.MyRoleRepository;
 import project.upload.reporitories.MySpaceRepository;
 import project.upload.reporitories.MyUserRepository;
 import project.upload.tools.Credential;
+import project.upload.tools.MyConstant;
 import project.upload.transformers.TestTransformerInterface;
 
 @Service
@@ -70,10 +71,10 @@ public class TestService implements TestServiceInterface{
 		MyFile myFile3 = new MyFile ("mon dessin de chien.png", "Home/utilisateur-1/", "Albator-007.png", myDate);
 		MyFile myFile4 = new MyFile ("ma photo de phoque.png", "Home/utilisateur-1/", "Albator-008.png", myDate);
 		
-		MyFile myFile5 = new MyFile ("Naruto 1.pdf", "Home/utilisateur-2/", "Dartagnan-001.pdf", myDate);
-		MyFile myFile6 = new MyFile ("Naruto 2.pdf", "Home/utilisateur-2/", "Dartagnan-002.pdf", myDate);
-		MyFile myFile7 = new MyFile ("Serval 1.pdf", "Home/utilisateur-2/", "Dartagnan-003.pdf", myDate);
-		MyFile myFile8 = new MyFile ("Serval 2.pdf", "Home/utilisateur-2/", "Dartagnan-004.pdf", myDate);
+		MyFile myFile5 = new MyFile ("Naruto 1.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-001.pdf", "Dartagnan-001.pdf", myDate);
+		MyFile myFile6 = new MyFile ("Naruto 2.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-002.pdf", "Dartagnan-002.pdf", myDate);
+		MyFile myFile7 = new MyFile ("Serval 1.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-003.pdf", "Dartagnan-003.pdf", myDate);
+		MyFile myFile8 = new MyFile ("Serval 2.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-004.pdf", "Dartagnan-004.pdf", myDate);
 		
 		MyRole myRole1 = new MyRole("utilisateur");
 		MyRole myRole2 = new MyRole("gestionaire");

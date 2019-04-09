@@ -11,4 +11,6 @@ public interface MyFileServiceInterface {
 	
 	List<MyFileDto> saveMyFiles(String token,Long id,MultipartFile[] multipartFile);
 
+	MyFileDto getDownLoadingMyFileDto(String token, Long id);
+
 }

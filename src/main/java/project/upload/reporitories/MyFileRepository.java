@@ -28,4 +28,9 @@ public interface MyFileRepository extends JpaRepository<MyFile,Long>{
 	//va chercher la list des fichiers en fonction de l'id de mySpace
 	@Query(value = "select * from my_file mf where mf.my_space_id = :paramId ", nativeQuery = true)
 	List<MyFile> selectMyFilesByMySpaceId(@Param("paramId") Long id);
+	
+	//va chercher le fichier en fonction de son id
+	@Query(value = "select * from my_file mf where mf.id = :paramId", nativeQuery = true)
+	MyFile selectMyFileById(@Param("paramId") Long id);
+	
 }

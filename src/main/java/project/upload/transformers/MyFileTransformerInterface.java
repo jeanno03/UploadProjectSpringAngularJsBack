@@ -8,5 +8,7 @@ import project.upload.models.MyFile;
 public interface MyFileTransformerInterface {
 
 	List<MyFileDto> getMySavedFilesDto(List<MyFile> myFiles);
+
+	MyFileDto getMyUploadingFileDto(MyFile myFile);
 	
 }

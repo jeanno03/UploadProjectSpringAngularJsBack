@@ -1,12 +1,21 @@
 package project.upload.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +33,6 @@ import project.upload.models.MyUser;
 import project.upload.reporitories.MySpaceRepository;
 import project.upload.reporitories.MyUserRepository;
 import project.upload.services.JwtServiceInterface;
-import project.upload.services.MyUserServiceInterface;
 import project.upload.services.TestServiceInterface;
 import project.upload.tools.Credential;
 import project.upload.tools.MyConstant;
@@ -109,6 +117,48 @@ public class TestController {
     public List<MySpace> getTestCustomQueryMySpace(){
     	List<MySpace> mySpaces = mySpaceRepository.selectMySpaceFromMyUser("dartagnan");
     	return mySpaces;
+    }
+    
+    //http://localhost:8080/Test/download
+    @RequestMapping(path = "/Test/download", method = RequestMethod.GET)
+    public ResponseEntity<Resource> download(String param) throws IOException {
+
+        // ...
+    	File file = new File("/home/jeanno/UploadProject/my_user_2_my_space_9_my_file_18.pdf");
+    	file.renameTo(file);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+   
+        return ResponseEntity.ok()
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
+    }
+    
+    //http://localhost:8080/Test/download2?image=my_user_2_my_space_9_my_file_18
+    @RequestMapping(path = "/Test/download2", method = RequestMethod.GET)
+    public ResponseEntity<Resource> download2(@RequestParam("image") String image) throws IOException {
+    	
+        String EXTENSION = ".pdf";
+        String SERVER_LOCATION = "/home/jeanno/UploadProject";
+        
+        
+        File file = new File(SERVER_LOCATION + File.separator + image + EXTENSION);
+
+        HttpHeaders header = new HttpHeaders();
+        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+image+EXTENSION);
+//        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=img.jpg");
+        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        header.add("Pragma", "no-cache");
+        header.add("Expires", "0");
+
+        Path path = Paths.get(file.getAbsolutePath());
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+
+        return ResponseEntity.ok()
+                .headers(header)
+                .contentLength(file.length())
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
     }
 	
 

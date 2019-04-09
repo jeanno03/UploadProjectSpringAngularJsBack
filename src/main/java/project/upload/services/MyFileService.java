@@ -105,6 +105,24 @@ public class MyFileService implements MyFileServiceInterface{
 		return myFilesDto;
 
 	}
+	
+	@Override
+	public MyFileDto getDownLoadingMyFileDto(String token, Long id) {
+		
+		MyFileDto myFileDto = null;
+		
+		try {
+			
+			JwtClaims jwtClaims = jwtService.testJwt(token);
+			MyFile myFile = myFileRepository.selectMyFileById(id);
+			myFileDto = myFileTransformer.getMyUploadingFileDto(myFile);
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return myFileDto;
+	}
 
 	private String generateRename(String login, MySpace mySpace, MyFile myLastFile) {
 
