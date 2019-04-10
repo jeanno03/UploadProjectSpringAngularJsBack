@@ -66,10 +66,11 @@ public class TestService implements TestServiceInterface{
 		
 		
 		
-		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018.pdf", "Home/utilisateur-1/", "Albator-005.pdf", myDate);
-		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018.pdf", "Home/utilisateur-1/", "Albator-006.pdf", myDate);
-		MyFile myFile3 = new MyFile ("mon dessin de chien.png", "Home/utilisateur-1/", "Albator-007.png", myDate);
-		MyFile myFile4 = new MyFile ("ma photo de phoque.png", "Home/utilisateur-1/", "Albator-008.png", myDate);
+		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018.pdf", MyConstant.PATH_DIRECTORY+"Albator-005.pdf", "Albator-005.pdf", myDate);
+		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018.pdf", MyConstant.PATH_DIRECTORY+"Albator-006.pdf", "Albator-006.pdf", myDate);
+		MyFile myFile3 = new MyFile ("mon dessin de chien.jpeg", MyConstant.PATH_DIRECTORY+"Albator-007.jpeg", "Albator-007.jpeg"
+				+ "", myDate);
+		MyFile myFile4 = new MyFile ("ma photo de phoque.jpeg", MyConstant.PATH_DIRECTORY+"Albator-008.jpeg", "Albator-008.jpeg", myDate);
 		
 		MyFile myFile5 = new MyFile ("Naruto 1.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-001.pdf", "Dartagnan-001.pdf", myDate);
 		MyFile myFile6 = new MyFile ("Naruto 2.pdf", MyConstant.PATH_DIRECTORY+"Dartagnan-002.pdf", "Dartagnan-002.pdf", myDate);

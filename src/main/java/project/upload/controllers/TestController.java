@@ -134,11 +134,11 @@ public class TestController {
                 .body(resource);
     }
     
-    //http://localhost:8080/Test/download2?image=my_user_2_my_space_9_my_file_18
+    //http://localhost:8080/Test/download2?image=Albator-007
     @RequestMapping(path = "/Test/download2", method = RequestMethod.GET)
     public ResponseEntity<Resource> download2(@RequestParam("image") String image) throws IOException {
     	
-        String EXTENSION = ".pdf";
+        String EXTENSION = ".jpeg";
         String SERVER_LOCATION = "/home/jeanno/UploadProject";
         
         
