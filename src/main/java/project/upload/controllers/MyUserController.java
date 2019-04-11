@@ -3,6 +3,7 @@ package project.upload.controllers;
 
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import project.upload.reporitories.MyUserRepository;
 import project.upload.services.HttpServiceInterface;
+import project.upload.services.JwtService;
 import project.upload.services.JwtServiceInterface;
 import project.upload.tools.Credential;
 import project.upload.tools.MyConstant;
@@ -34,6 +36,8 @@ public class MyUserController {
 	@Autowired
 	private HttpServiceInterface httpService;
 	
+	final static Logger logger = Logger.getLogger(MyUserController.class);
+	
 	//constructeur inutile
 	//a utiliser seulement si on utilise myUserRepository
 	public MyUserController(MyUserRepository myUserRepository) {
@@ -45,6 +49,8 @@ public class MyUserController {
 	//http://localhost:8080/MyUser/getConnectJwt
 	@RequestMapping(value="MyUser/getConnectJwt",method=RequestMethod.POST)
 	public ResponseEntity<?> getConnectJwt(@RequestBody Credential credential) throws Exception {
+		
+		logger.info("Api : MyUser/getConnectJwt");
 		
 //		String jwt = jwtService.getConnectJwt(credential);
 		String jwt = jwtService.getConnectReturnToken(credential);

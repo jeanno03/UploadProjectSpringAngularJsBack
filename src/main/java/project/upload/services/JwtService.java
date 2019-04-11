@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 import org.bouncycastle.util.encoders.Hex;
 import org.jose4j.jwk.JsonWebKey;
@@ -37,6 +38,7 @@ import project.upload.models.MyRole;
 import project.upload.models.MyUser;
 import project.upload.reporitories.MyRoleRepository;
 import project.upload.reporitories.MyUserRepository;
+import project.upload.singleton.ClassSingleton;
 
 @Service
 public class JwtService implements JwtServiceInterface{
@@ -49,30 +51,32 @@ public class JwtService implements JwtServiceInterface{
 	
 	@Autowired
 	MyRoleTransformerInterface myRoleTransformer;
+	
+	final static Logger logger = Logger.getLogger(JwtService.class);
 
 	//MyStatics.jsonWebKeys est la list qui va controller les jwt
 	//se lance au démarrage de l'application
-	static {
-
-		for(int i=0;i<3;i++) {
-
-			JsonWebKey jsonWebKey=null;
-
-			try {
-				int kid=i;
-
-				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
-				jsonWebKey.setKeyId(String.valueOf(kid));
-				System.out.println(i);
-				MyStatic.jsonWebKeys.add(jsonWebKey);
-
-			}catch(JoseException ex) {
-				ex.printStackTrace();
-			}catch(Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
+//	static {
+//
+//		for(int i=0;i<3;i++) {
+//
+//			JsonWebKey jsonWebKey=null;
+//
+//			try {
+//				int kid=i;
+//
+//				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
+//				jsonWebKey.setKeyId(String.valueOf(kid));
+//				System.out.println(i);
+//				MyStatic.jsonWebKeys.add(jsonWebKey);
+//
+//			}catch(JoseException ex) {
+//				ex.printStackTrace();
+//			}catch(Exception ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+//	}
 
 	
 	@Override
@@ -111,15 +115,22 @@ public class JwtService implements JwtServiceInterface{
 			jsonWebSignature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
 
 			try {
-				jwt=jsonWebSignature.getCompactSerialization();
+				
+				jwt=jsonWebSignature.getCompactSerialization();				
+				logger.info("Test connection successfull - login : " + credential.getLogin());
+				logger.info("Kid number : " + kidRandom);
 			}catch(JoseException ex) {
 
 			}catch(Exception ex) {
 
 			}
 
-		}catch(Exception ex) {
-			ex.printStackTrace();
+		}catch(NullPointerException ex) {
+//			ex.printStackTrace();
+			logger.info("Invalid connection for login : " + credential.getLogin());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return jwt;
@@ -183,9 +194,11 @@ public class JwtService implements JwtServiceInterface{
 
 				System.out.println("JWT validation succeeded! " + jwtClaims);
 
-			} catch (InvalidJwtException e) {
+			} catch (InvalidJwtException ex) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.info("Invalid token client");
+				logger.info("Message : " + ex);
+				ex.printStackTrace();
 			}
 
 		}catch(Exception ex) {
@@ -237,7 +250,7 @@ public class JwtService implements JwtServiceInterface{
 			}
 			
 		}catch(Exception ex) {
-			ex.printStackTrace();
+//			ex.printStackTrace();
 		}
 		
 		return test;	

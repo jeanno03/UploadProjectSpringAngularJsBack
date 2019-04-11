@@ -9,6 +9,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+//import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -51,6 +54,8 @@ public class TestController {
 	
 	@Autowired
 	private JwtServiceInterface jwtService;
+	
+	final static Logger logger = Logger.getLogger(TestController.class);
 
 	public TestController(MyUserRepository myUserRepository, MySpaceRepository mySpaceRepository) {
 		super();
@@ -61,6 +66,7 @@ public class TestController {
 	//http://localhost:8080/Test/getDataTest
 	@RequestMapping(value="Test/getDataTest", method= RequestMethod.GET)
 	public String getDataTest(@RequestHeader String bearer) {
+		logger.info("API Test/getDataTest ");
 		if(testService.authorizeTest(bearer)) {
 			String result = testService.getDataTest();
 			return "{\"return\":\""+result+"\"}";
