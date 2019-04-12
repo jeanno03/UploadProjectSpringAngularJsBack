@@ -1,4 +1,4 @@
-package project.upload.tools;
+package project.upload.tools.classes;
 
 public class Credential {
 	

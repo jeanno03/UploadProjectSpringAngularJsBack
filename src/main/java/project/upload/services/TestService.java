@@ -14,12 +14,12 @@ import project.upload.models.MyFile;
 import project.upload.models.MyRole;
 import project.upload.models.MySpace;
 import project.upload.models.MyUser;
-import project.upload.reporitories.MyFileRepository;
-import project.upload.reporitories.MyRoleRepository;
-import project.upload.reporitories.MySpaceRepository;
-import project.upload.reporitories.MyUserRepository;
-import project.upload.tools.Credential;
-import project.upload.tools.MyConstant;
+import project.upload.repositories.MyFileRepository;
+import project.upload.repositories.MyRoleRepository;
+import project.upload.repositories.MySpaceRepository;
+import project.upload.repositories.MyUserRepository;
+import project.upload.tools.classes.Credential;
+import project.upload.tools.interfaces.MyConstant;
 import project.upload.transformers.TestTransformerInterface;
 
 @Service

@@ -1,24 +1,41 @@
 package project.upload;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import project.upload.singleton.ClassSingleton;
+import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.singleton.ClassSingleton;
 
 
 @SpringBootApplication
 public class UploadProjectSpringAngularJsBackApplication {
 	
-	static ClassSingleton classSingleton1 = ClassSingleton.getInstance();
+	static {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	    System.setProperty("current.date.time", dateFormat.format(new Date()));
+	}
+
+	
+	static ClassSingleton classSingleton = ClassSingleton.getInstance();
 	
 	final static Logger logger = Logger.getLogger(UploadProjectSpringAngularJsBackApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(UploadProjectSpringAngularJsBackApplication.class, args);
-		String classSingletonStart = classSingleton1.getInfo();
+		String classSingletonStart = classSingleton.getInfo();
+		
 		logger.info(classSingletonStart);
-		classSingleton1.generateJsonWebKeys();
+		classSingleton.generateJsonWebKeys();
+		classSingleton.loadPropertiesFile();
+		
+		String test = MyConstant.PROP.getProperty("test");
+		logger.info(test);
+		
+		
 		
 	}
 

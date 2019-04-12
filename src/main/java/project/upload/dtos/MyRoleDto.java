@@ -3,9 +3,8 @@ package project.upload.dtos;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class MyRoleDto {
-	
-	private Long id;
+public class MyRoleDto extends SuperDto{
+
 	private String name;
 	
 	private Collection<MyUserDto> myUsersDto;
@@ -16,8 +15,7 @@ public class MyRoleDto {
 	}
 
 	public MyRoleDto(Long id, String name) {
-		this();
-		this.id = id;
+		super(id);
 		this.name = name;
 	}
 

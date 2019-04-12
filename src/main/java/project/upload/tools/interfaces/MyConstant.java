@@ -1,4 +1,6 @@
-package project.upload.tools;
+package project.upload.tools.interfaces;
+
+import java.util.Properties;
 
 public interface MyConstant {
 	
@@ -10,5 +12,5 @@ public interface MyConstant {
 	static final String FORBIDDEN ="403-forbidden";
 //	static final String UPLOAD_NAME ="uploadName";
 	static final String PATH_DIRECTORY ="/home/jeanno/UploadProject/";
-
+	static final Properties PROP = new Properties();
 }

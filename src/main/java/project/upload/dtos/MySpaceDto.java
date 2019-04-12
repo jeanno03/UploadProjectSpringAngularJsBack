@@ -4,9 +4,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
-public class MySpaceDto {
+public class MySpaceDto extends SuperDto{
 
-	private Long id;
 	private String name;
 	private String description;
 	private Date creation;
@@ -19,7 +18,7 @@ public class MySpaceDto {
 	}
 
 	public MySpaceDto(Long id, String name, String description, Date creation) {
-		super();
+		super(id);
 		this.id = id;
 		this.name = name;
 		this.description = description;

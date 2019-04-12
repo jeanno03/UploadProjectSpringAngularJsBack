@@ -3,7 +3,6 @@ package project.upload.services;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +12,6 @@ import org.bouncycastle.util.encoders.Hex;
 import org.jose4j.jwk.JsonWebKey;
 import org.jose4j.jwk.JsonWebKeySet;
 import org.jose4j.jwk.RsaJsonWebKey;
-import org.jose4j.jwk.RsaJwkGenerator;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
@@ -22,6 +20,7 @@ import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.lang.JoseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -29,113 +28,106 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import project.upload.tools.Credential;
-import project.upload.tools.MyConstant;
-import project.upload.tools.MyStatic;
-import project.upload.transformers.MyRoleTransformerInterface;
+import project.upload.tools.classes.Credential;
+import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.interfaces.MyStatic;
+import project.upload.transformers.TransformerInterface;
 import project.upload.dtos.MyRoleDto;
-import project.upload.models.MyRole;
 import project.upload.models.MyUser;
-import project.upload.reporitories.MyRoleRepository;
-import project.upload.reporitories.MyUserRepository;
-import project.upload.singleton.ClassSingleton;
+import project.upload.repositories.MyRoleRepository;
+import project.upload.repositories.MyUserRepository;
 
 @Service
 public class JwtService implements JwtServiceInterface{
-	
+
 	@Autowired
 	MyUserRepository myUserRepository;
-	
+
 	@Autowired
 	MyRoleRepository myRoleRepository;
 	
 	@Autowired
-	MyRoleTransformerInterface myRoleTransformer;
-	
+	@Qualifier("my-role")
+	TransformerInterface transformerInterface;
+
+
 	final static Logger logger = Logger.getLogger(JwtService.class);
 
-	//MyStatics.jsonWebKeys est la list qui va controller les jwt
-	//se lance au démarrage de l'application
-//	static {
-//
-//		for(int i=0;i<3;i++) {
-//
-//			JsonWebKey jsonWebKey=null;
-//
-//			try {
-//				int kid=i;
-//
-//				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
-//				jsonWebKey.setKeyId(String.valueOf(kid));
-//				System.out.println(i);
-//				MyStatic.jsonWebKeys.add(jsonWebKey);
-//
-//			}catch(JoseException ex) {
-//				ex.printStackTrace();
-//			}catch(Exception ex) {
-//				ex.printStackTrace();
-//			}
-//		}
-//	}
-
-	
 	@Override
 	public String getConnectReturnToken(Credential credential){
+		
+		
 
 		String jwt = null;
 
 		try {
-			
-			List<MyRoleDto> myRolesDto = jwtConnectReturnMyUserDto(credential);
-			List<String>rolesString=new ArrayList();
-			myRolesDto.forEach(m->{
-				rolesString.add(m.getName());
-			});
-			int kidRandom = generateRandmoKid();
+			//d'abord un boolean
+			boolean testCredential = testCredential(credential);
 
-			RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) MyStatic.jsonWebKeys.get(kidRandom);
+			if(testCredential) {
 
-			JwtClaims jwtClaims = new JwtClaims();
-			// Create the Claims, which will be the content of the JWT
-			//émetteur
-			jwtClaims.setIssuer(MyConstant.DOMAIN);
-			jwtClaims.setExpirationTimeMinutesInTheFuture(120);
-			jwtClaims.setGeneratedJwtId();
-			jwtClaims.setIssuedAtToNow();
-			jwtClaims.setNotBeforeMinutesInThePast(2);
-			jwtClaims.setSubject(credential.getLogin());
-			jwtClaims.setStringListClaim(MyConstant.ROLES, rolesString);
+				//je contruit List<MyRoleDto> myRolesDto 
 
-			JsonWebSignature jsonWebSignature = new JsonWebSignature();
-			jsonWebSignature.setPayload(jwtClaims.toJson());
-
-			jsonWebSignature.setKeyIdHeaderValue(rsaJsonWebKey.getKeyId());
-			jsonWebSignature.setKey(rsaJsonWebKey.getPrivateKey());
-
-			jsonWebSignature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
-
-			try {
+				List<MyRoleDto> myRolesDto = transformerInterface.getMyListDto(credential.getLogin());
 				
-				jwt=jsonWebSignature.getCompactSerialization();				
-				logger.info("Test connection successfull - login : " + credential.getLogin());
-				logger.info("Kid number : " + kidRandom);
-			}catch(JoseException ex) {
+				myRolesDto.forEach(System.out::println);
+				myRolesDto.forEach(m->{
+					logger.info("MyRolesDto Id : " + m.getId());
+				});
+				//je génère List<String>rolesString
+				List<String>rolesString= getRolesString(myRolesDto);	
+				
+				int kidRandom = generateRandmoKid();
 
-			}catch(Exception ex) {
+				RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) MyStatic.jsonWebKeys.get(kidRandom);
 
+				JwtClaims jwtClaims = new JwtClaims();
+				// Create the Claims, which will be the content of the JWT
+				//émetteur
+				jwtClaims.setIssuer(MyConstant.DOMAIN);
+				jwtClaims.setExpirationTimeMinutesInTheFuture(120);
+				jwtClaims.setGeneratedJwtId();
+				jwtClaims.setIssuedAtToNow();
+				jwtClaims.setNotBeforeMinutesInThePast(2);
+				jwtClaims.setSubject(credential.getLogin());
+				jwtClaims.setStringListClaim(MyConstant.ROLES, rolesString);
+
+				JsonWebSignature jsonWebSignature = new JsonWebSignature();
+				jsonWebSignature.setPayload(jwtClaims.toJson());
+
+				jsonWebSignature.setKeyIdHeaderValue(rsaJsonWebKey.getKeyId());
+				jsonWebSignature.setKey(rsaJsonWebKey.getPrivateKey());
+
+				jsonWebSignature.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
+
+				try {
+
+					jwt=jsonWebSignature.getCompactSerialization();				
+					logger.info("Test connection successfull - login : " + credential.getLogin());
+					logger.info("Kid number : " + kidRandom);
+				}catch(JoseException ex) {
+					logger.error(ex.getMessage());
+				}catch(Exception ex) {
+					logger.error(ex.getMessage());
+				}
+
+			}
+			else 
+			{
+				jwt = null;
 			}
 
 		}catch(NullPointerException ex) {
-//			ex.printStackTrace();
-			logger.info("Invalid connection for login : " + credential.getLogin());
-		} catch (Exception e) {
+			//			ex.printStackTrace();
+			logger.error(ex.getMessage());
+		} catch (Exception ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(ex.getMessage());
 		}
 
 		return jwt;
 	}
-	
+
 
 	@Override
 	public JwtClaims testJwt(String token) {
@@ -218,50 +210,47 @@ public class JwtService implements JwtServiceInterface{
 		String[] tokenTab = token.split("\\.");
 		return tokenTab;
 	}
-	
-	private List<MyRoleDto> jwtConnectReturnMyUserDto(Credential credential) throws Exception{
-		List<MyRoleDto> myRolesDto = null;
+
+	private boolean testCredential(Credential credential) {
+
+		Boolean test = false;		
+		String credentialSha3;
+
 		try {
-			
+
+			credentialSha3 = getStringSha3(credential.getPassword());
+
 			//requete native
 			MyUser myUser = myUserRepository.selectMyUserByLogin(credential.getLogin());
-			
-			if(testConnection(credential, myUser)) {
-				
-				//requete native
-				List<MyRole> myRoles = myRoleRepository.selectMyRolesFromMyUser(credential.getLogin());
-				myRolesDto = myRoleTransformer.getMyRolesDtoFromMyUserLogin(myRoles);
-			}
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-		return myRolesDto;
-	}
-	
-	private boolean testConnection(Credential credential, MyUser myUser) throws Exception {
-		
-		Boolean test = false;		
-		String credentialSha3 = getStringSha3(credential.getPassword());
-		
-		try {
-		
+
 			if(credentialSha3.equals(myUser.getPassword())) {
 				test = true;
 			}
-			
+
 		}catch(Exception ex) {
-//			ex.printStackTrace();
+			//			ex.printStackTrace();
 		}
-		
-		return test;	
+		logger.info("test connection : " + test);
+		return test;
+
 	}
-	
+
 	//return password hashé
 	private String getStringSha3(String password) throws Exception { 
-	    SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512(); 
-	    byte[] digest = digestSHA3.digest(password.getBytes()); 
-	    return Hex.toHexString(digest);
+		SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512(); 
+		byte[] digest = digestSHA3.digest(password.getBytes()); 
+		return Hex.toHexString(digest);
 	}
 	
+	private List<String> getRolesString(List <MyRoleDto> myRolesDto){
+		
+		List<String>rolesString=new ArrayList();
+		
+		myRolesDto.forEach(m->{
+			rolesString.add(m.getName());
+		});
+		
+		return rolesString;
+	}
 
 }

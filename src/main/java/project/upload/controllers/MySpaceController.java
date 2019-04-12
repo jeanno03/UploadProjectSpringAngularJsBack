@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import project.upload.dtos.MySpaceDto;
 import project.upload.models.MySpace;
-import project.upload.reporitories.MySpaceRepository;
-import project.upload.services.HttpServiceInterface;
+import project.upload.repositories.MySpaceRepository;
 import project.upload.services.MySpaceServiceInterface;
-import project.upload.tools.MyConstant;
+import project.upload.tools.interfaces.HttpBuilder;
+import project.upload.tools.interfaces.MyConstant;
 
 @RestController
 @CrossOrigin("*")
@@ -27,8 +27,8 @@ public class MySpaceController {
 	//inutile si on utilise pas les requete directement dans le controlleur
 	private MySpaceRepository mySpaceRepository;
 
-	@Autowired
-	private HttpServiceInterface httpService;
+//	@Autowired
+//	private HttpBuilder httpService;
 
 	@Autowired
 	private MySpaceServiceInterface mySpaceService;
@@ -50,7 +50,7 @@ public class MySpaceController {
 			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
 		}
 		else {
-			HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);
+			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);
 			return new ResponseEntity<>(httpResponse, HttpStatus.UNAUTHORIZED);
 		}
 
@@ -67,7 +67,7 @@ public class MySpaceController {
 		if(mySpaces!=null) {
 			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
 		}else {
-			HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
+			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
 			return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
 		}
 
@@ -84,7 +84,7 @@ public class MySpaceController {
 			return new ResponseEntity<>(mySpaceDto,HttpStatus.OK);
 		}
 		else {
-			HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
+			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
 			return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
 		}
 

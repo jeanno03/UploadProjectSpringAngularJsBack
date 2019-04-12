@@ -3,9 +3,8 @@ package project.upload.dtos;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class MyUserDto {
+public class MyUserDto extends SuperDto{
 
-	private Long id;
 	private String login;
 	private String email;
 	
@@ -19,8 +18,7 @@ public class MyUserDto {
 	}
 
 	public MyUserDto(Long id, String login, String email) {
-		super();
-		this.id = id;
+		super(id);
 		this.login = login;
 		this.email = email;
 	}

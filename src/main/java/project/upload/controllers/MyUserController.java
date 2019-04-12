@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import project.upload.reporitories.MyUserRepository;
-import project.upload.services.HttpServiceInterface;
+import project.upload.repositories.MyUserRepository;
 import project.upload.services.JwtService;
 import project.upload.services.JwtServiceInterface;
-import project.upload.tools.Credential;
-import project.upload.tools.MyConstant;
+import project.upload.tools.classes.Credential;
+import project.upload.tools.interfaces.HttpBuilder;
+import project.upload.tools.interfaces.MyConstant;
 
 //inactif spring-boot-starter-data-rest ==> service rest de spring annulé
 //http://localhost:8080/myUsers
@@ -33,8 +33,8 @@ public class MyUserController {
 	@Autowired
 	private JwtServiceInterface jwtService;
 	
-	@Autowired
-	private HttpServiceInterface httpService;
+//	@Autowired
+//	private HttpBuilder httpService;
 	
 	final static Logger logger = Logger.getLogger(MyUserController.class);
 	
@@ -55,12 +55,12 @@ public class MyUserController {
 //		String jwt = jwtService.getConnectJwt(credential);
 		String jwt = jwtService.getConnectReturnToken(credential);
 		if(jwt==null) {
-			HashMap<String, String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);
+			HashMap<String, String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);
 			return new ResponseEntity<>(httpResponse, HttpStatus.UNAUTHORIZED);
 		}
 		else {
 		
-			HashMap<String, String> httpResponse = httpService.getHttpResponse(MyConstant.TOKEN, jwt);
+			HashMap<String, String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.TOKEN, jwt);
 			return new ResponseEntity<>(httpResponse, HttpStatus.OK);
 
 		}

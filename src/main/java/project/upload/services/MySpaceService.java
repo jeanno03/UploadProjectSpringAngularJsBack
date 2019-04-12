@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import project.upload.dtos.MySpaceDto;
 import project.upload.models.MySpace;
 import project.upload.models.MyUser;
-import project.upload.reporitories.MySpaceRepository;
-import project.upload.reporitories.MyUserRepository;
+import project.upload.repositories.MySpaceRepository;
+import project.upload.repositories.MyUserRepository;
 import project.upload.transformers.MySpaceTransformer;
 
 @Service

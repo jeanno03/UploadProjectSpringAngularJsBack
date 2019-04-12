@@ -1,4 +1,4 @@
-package project.upload.tools;
+package project.upload.tools.tests;
 
 import org.springframework.web.multipart.MultipartFile;
 

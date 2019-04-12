@@ -2,7 +2,7 @@ package project.upload.services;
 
 import org.jose4j.jwt.JwtClaims;
 
-import project.upload.tools.Credential;
+import project.upload.tools.classes.Credential;
 
 public interface JwtServiceInterface {
 

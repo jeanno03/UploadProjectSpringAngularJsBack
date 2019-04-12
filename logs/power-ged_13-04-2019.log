@@ -1,0 +1,52 @@
+2019-04-13 00:00:08 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 00:00:08 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 00:00:10 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 00:00:10 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 00:00:10 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 00:00:20 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 00:00:24 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 00:00:24 INFO  JwtService:232 - test connection : true
+2019-04-13 00:00:24 INFO  JwtService:74 - MyRolesDto Id : 15
+2019-04-13 00:00:24 INFO  JwtService:74 - MyRolesDto Id : 16
+2019-04-13 00:00:24 INFO  JwtService:74 - MyRolesDto Id : 17
+2019-04-13 00:00:24 INFO  JwtService:105 - Test connection successfull - login : Albator
+2019-04-13 00:00:24 INFO  JwtService:106 - Kid number : 0
+2019-04-13 00:03:17 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 00:03:19 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 00:03:20 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 00:03:21 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 00:03:21 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 00:03:35 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 00:03:38 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 00:03:38 INFO  JwtService:232 - test connection : true
+2019-04-13 00:03:38 INFO  JwtService:74 - MyRolesDto Id : 15
+2019-04-13 00:03:38 INFO  JwtService:74 - MyRolesDto Id : 16
+2019-04-13 00:03:38 INFO  JwtService:74 - MyRolesDto Id : 17
+2019-04-13 00:03:38 INFO  JwtService:105 - Test connection successfull - login : Albator
+2019-04-13 00:03:38 INFO  JwtService:106 - Kid number : 0
+2019-04-13 00:16:35 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 00:16:37 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 00:16:38 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 00:16:42 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 00:16:42 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 00:17:09 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 00:17:12 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 00:17:12 INFO  JwtService:238 - test connection : true
+2019-04-13 00:17:12 INFO  JwtService:80 - MyRolesDto Id : 15
+2019-04-13 00:17:12 INFO  JwtService:80 - MyRolesDto Id : 16
+2019-04-13 00:17:12 INFO  JwtService:80 - MyRolesDto Id : 17
+2019-04-13 00:17:12 INFO  JwtService:111 - Test connection successfull - login : Albator
+2019-04-13 00:17:12 INFO  JwtService:112 - Kid number : 0
+2019-04-13 00:32:06 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 00:32:07 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 00:32:08 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 00:32:10 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 00:32:10 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 00:32:24 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 00:32:27 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 00:32:27 INFO  JwtService:233 - test connection : true
+2019-04-13 00:32:27 INFO  JwtService:75 - MyRolesDto Id : 15
+2019-04-13 00:32:27 INFO  JwtService:75 - MyRolesDto Id : 16
+2019-04-13 00:32:27 INFO  JwtService:75 - MyRolesDto Id : 17
+2019-04-13 00:32:27 INFO  JwtService:106 - Test connection successfull - login : Albator
+2019-04-13 00:32:27 INFO  JwtService:107 - Kid number : 1

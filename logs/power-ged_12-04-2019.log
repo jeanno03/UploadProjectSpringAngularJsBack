@@ -1,0 +1,307 @@
+2019-04-12 17:53:26 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 17:53:26 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 17:53:27 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 17:53:28 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 17:53:28 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 20:14:15 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:14:19 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 20:14:21 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:14:21 INFO  JwtService:96 - Test connection successfull - login : Albator
+2019-04-12 20:14:21 INFO  JwtService:97 - Kid number : 1
+2019-04-12 20:28:28 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 20:28:29 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 20:28:30 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 20:28:30 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 20:28:30 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 20:28:42 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 20:28:49 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:28:58 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:28:58 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 20:28:58 INFO  JwtService:97 - Kid number : 1
+2019-04-12 20:34:25 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 20:34:26 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 20:34:27 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 20:34:29 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 20:34:29 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 20:34:42 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 20:34:52 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:34:52 INFO  JwtService:96 - Test connection successfull - login : Albator
+2019-04-12 20:34:52 INFO  JwtService:97 - Kid number : 1
+2019-04-12 20:45:33 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 20:45:34 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 20:45:36 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 20:45:36 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 20:45:36 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 20:45:48 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 20:45:59 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:45:59 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 20:45:59 INFO  JwtService:97 - Kid number : 1
+2019-04-12 20:47:47 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 20:47:47 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 20:47:48 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 20:47:48 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 20:47:48 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 20:48:09 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 20:48:11 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 20:48:12 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 20:48:12 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:10:44 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:10:45 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:10:46 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:10:48 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:10:48 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:11:17 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:11:19 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:11:19 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:11:19 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:19:14 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:19:15 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:19:16 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:19:16 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:19:16 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:19:31 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:19:33 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:19:34 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:19:34 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:23:50 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:23:50 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:23:53 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:23:54 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:23:54 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:24:07 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:24:13 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:24:13 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:24:13 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:30:18 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:30:18 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:30:18 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:30:19 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:30:19 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:30:26 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:30:46 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:30:46 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:30:46 INFO  JwtService:97 - Kid number : 0
+2019-04-12 21:34:25 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:34:27 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:34:29 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:34:30 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:34:30 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:34:39 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:34:43 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:34:43 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:34:43 INFO  JwtService:97 - Kid number : 0
+2019-04-12 21:39:48 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:39:49 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:39:50 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:39:51 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:39:51 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:40:04 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:40:07 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:40:10 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:40:10 INFO  JwtService:96 - Test connection successfull - login : Dartagnan
+2019-04-12 21:40:10 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:42:03 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:42:05 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:42:05 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:42:05 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:42:05 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:42:10 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:42:24 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:42:24 INFO  JwtService:96 - Test connection successfull - login : Albator
+2019-04-12 21:42:24 INFO  JwtService:97 - Kid number : 0
+2019-04-12 21:43:25 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:43:26 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:43:26 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:43:27 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:43:27 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:43:40 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:43:43 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:43:46 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:43:46 INFO  JwtService:96 - Test connection successfull - login : Albator
+2019-04-12 21:43:46 INFO  JwtService:97 - Kid number : 1
+2019-04-12 21:46:10 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 21:46:10 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 21:46:13 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 21:46:15 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 21:46:15 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 21:46:23 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 21:46:27 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 21:46:27 INFO  JwtService:96 - Test connection successfull - login : Albator
+2019-04-12 21:46:27 INFO  JwtService:97 - Kid number : 1
+2019-04-12 22:02:35 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:02:36 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:02:37 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:02:38 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:02:38 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:02:51 DEBUG cache:44 - Couldn't find template in cache for "error.ftl"("fr_FR", UTF-8, parsed); will try to load it.
+2019-04-12 22:02:52 DEBUG cache:44 - TemplateLoader.findTemplateSource("error_fr_FR.ftl"): Not found
+2019-04-12 22:02:52 DEBUG cache:44 - TemplateLoader.findTemplateSource("error_fr.ftl"): Not found
+2019-04-12 22:02:52 DEBUG cache:44 - TemplateLoader.findTemplateSource("error.ftl"): Not found
+2019-04-12 22:03:03 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:03:06 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:03:06 INFO  JwtService:101 - Test connection successfull - login : Albator
+2019-04-12 22:03:06 INFO  JwtService:102 - Kid number : 1
+2019-04-12 22:04:37 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:04:38 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:04:40 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:04:41 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:04:41 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:04:48 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:04:52 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:04:52 INFO  JwtService:101 - Test connection successfull - login : Albator
+2019-04-12 22:04:52 INFO  JwtService:102 - Kid number : 0
+2019-04-12 22:20:54 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:20:55 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:20:55 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:20:56 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:20:56 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:21:15 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:21:17 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:21:17 INFO  JwtService:101 - Test connection successfull - login : Albator
+2019-04-12 22:21:17 INFO  JwtService:102 - Kid number : 1
+2019-04-12 22:36:31 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:36:32 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:36:32 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:36:34 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:36:34 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:36:47 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:36:50 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:36:50 INFO  JwtService:101 - Test connection successfull - login : Albator
+2019-04-12 22:36:50 INFO  JwtService:102 - Kid number : 1
+2019-04-12 22:49:38 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:49:39 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:49:39 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:49:40 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:49:40 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:49:48 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:49:51 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:49:51 INFO  JwtService:114 - Invalid connection for login : Albator
+2019-04-12 22:49:57 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:49:57 INFO  JwtService:114 - Invalid connection for login : Albator
+2019-04-12 22:50:00 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:50:09 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:50:09 INFO  JwtService:114 - Invalid connection for login : Dartagnan
+2019-04-12 22:50:54 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:50:57 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:51:00 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:51:00 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:51:00 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:51:11 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:51:14 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:51:14 INFO  JwtService:114 - Invalid connection for login : Albator
+2019-04-12 22:55:17 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:55:18 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:55:19 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:55:20 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:55:20 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:55:29 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:55:33 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:55:33 INFO  JwtService:225 - test connection : true
+2019-04-12 22:55:33 INFO  JwtService:114 - Invalid connection for login : Albator
+2019-04-12 22:57:12 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 22:57:13 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 22:57:14 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 22:57:15 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 22:57:15 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 22:57:26 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 22:57:29 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 22:57:29 INFO  JwtService:225 - test connection : true
+2019-04-12 22:57:29 INFO  JwtService:114 - Invalid connection for login : Albator
+2019-04-12 23:24:41 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:24:43 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:24:45 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:24:45 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:24:45 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:25:02 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:25:04 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:25:04 INFO  JwtService:229 - test connection : true
+2019-04-12 23:25:04 INFO  JwtService:118 - Invalid connection for login : Albator
+2019-04-12 23:30:38 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:30:40 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:30:41 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:30:42 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:30:42 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:30:52 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:30:57 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:30:57 INFO  JwtService:233 - test connection : true
+2019-04-12 23:30:57 ERROR JwtService:122 - 
+2019-04-12 23:32:48 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:32:50 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:32:52 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:32:52 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:32:52 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:32:58 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:33:02 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:33:02 INFO  JwtService:233 - test connection : true
+2019-04-12 23:33:23 ERROR JwtService:122 - 
+2019-04-12 23:34:52 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:34:53 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:34:53 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:34:54 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:34:54 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:35:33 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:35:39 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:35:39 INFO  JwtService:233 - test connection : true
+2019-04-12 23:35:39 ERROR JwtService:122 - 
+2019-04-12 23:38:49 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:38:51 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:38:54 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:38:54 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:38:54 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:38:59 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:39:01 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:39:01 INFO  JwtService:233 - test connection : true
+2019-04-12 23:39:01 INFO  JwtService:75 - MyRolesDto Id : 15
+2019-04-12 23:39:01 INFO  JwtService:75 - MyRolesDto Id : 16
+2019-04-12 23:39:01 INFO  JwtService:75 - MyRolesDto Id : 17
+2019-04-12 23:39:01 INFO  JwtService:106 - Test connection successfull - login : Albator
+2019-04-12 23:39:01 INFO  JwtService:107 - Kid number : 0
+2019-04-12 23:43:05 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:43:08 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:43:08 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:43:10 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:43:10 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:43:48 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:43:51 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:43:51 INFO  JwtService:233 - test connection : true
+2019-04-12 23:43:51 INFO  JwtService:75 - MyRolesDto Id : 15
+2019-04-12 23:43:51 INFO  JwtService:75 - MyRolesDto Id : 16
+2019-04-12 23:43:51 INFO  JwtService:75 - MyRolesDto Id : 17
+2019-04-12 23:43:51 INFO  JwtService:106 - Test connection successfull - login : Albator
+2019-04-12 23:43:51 INFO  JwtService:107 - Kid number : 1
+2019-04-12 23:47:33 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:47:34 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:47:35 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:47:37 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:47:37 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:47:43 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:47:47 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:47:47 INFO  JwtService:235 - test connection : true
+2019-04-12 23:47:47 ERROR JwtService:124 - 
+2019-04-12 23:48:42 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:48:43 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:48:44 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:48:46 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:48:46 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:48:51 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:48:54 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:48:54 INFO  JwtService:236 - test connection : true
+2019-04-12 23:48:54 ERROR JwtService:125 - 
+2019-04-12 23:49:23 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:49:24 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:49:25 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:49:27 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:49:27 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:49:30 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:49:33 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:49:33 INFO  JwtService:236 - test connection : true
+2019-04-12 23:49:33 ERROR JwtService:125 - 
+2019-04-12 23:52:53 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-12 23:52:54 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-12 23:52:56 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-12 23:52:58 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-12 23:52:58 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-12 23:53:07 INFO  TestController:69 - API Test/getDataTest 
+2019-04-12 23:53:10 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-12 23:53:10 INFO  JwtService:236 - test connection : true
+2019-04-12 23:53:10 ERROR JwtService:125 - 

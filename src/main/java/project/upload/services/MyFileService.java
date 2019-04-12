@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.jose4j.jwt.JwtClaims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,11 +15,12 @@ import project.upload.dtos.MyFileDto;
 import project.upload.models.MyFile;
 import project.upload.models.MySpace;
 import project.upload.models.MyUser;
-import project.upload.reporitories.MyFileRepository;
-import project.upload.reporitories.MySpaceRepository;
-import project.upload.reporitories.MyUserRepository;
-import project.upload.tools.MyConstant;
+import project.upload.repositories.MyFileRepository;
+import project.upload.repositories.MySpaceRepository;
+import project.upload.repositories.MyUserRepository;
+import project.upload.tools.interfaces.MyConstant;
 import project.upload.transformers.MyFileTransformer;
+import project.upload.transformers.TransformerInterface;
 
 @Service
 public class MyFileService implements MyFileServiceInterface{
@@ -35,9 +37,15 @@ public class MyFileService implements MyFileServiceInterface{
 	@Autowired
 	private JwtServiceInterface jwtService;
 
+//	@Autowired
+//	private MyFileTransformer myFileTransformer;
+	
+//	@Autowired
+//	private TransformerInterface transformerInterface;
+	
 	@Autowired
-	private MyFileTransformer myFileTransformer;
-
+	@Qualifier("my-file")
+	TransformerInterface transformerInterface;
 
 	@Override
 	public List<MyFileDto> saveMyFiles(String token, Long id, MultipartFile[] multipartFile) {
@@ -92,10 +100,7 @@ public class MyFileService implements MyFileServiceInterface{
 			}
 
 			//6 je récupère les fichiers sauvegardé par mySpace.id
-			List<MyFile> myFiles = myFileRepository.selectMyFilesByMySpaceId(id);
-
-			//7 je créé myFilesDto
-			myFilesDto = myFileTransformer.getMySavedFilesDto(myFiles);
+			myFilesDto = transformerInterface.getMyListDto(String.valueOf(id));
 
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -108,14 +113,14 @@ public class MyFileService implements MyFileServiceInterface{
 	
 	@Override
 	public MyFileDto getDownLoadingMyFileDto(String token, Long id) {
-		
+
 		MyFileDto myFileDto = null;
 		
 		try {
 			
 			JwtClaims jwtClaims = jwtService.testJwt(token);
-			MyFile myFile = myFileRepository.selectMyFileById(id);
-			myFileDto = myFileTransformer.getMyUploadingFileDto(myFile);
+
+			myFileDto = (MyFileDto) transformerInterface.getSimpleDto(String.valueOf(id));
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();

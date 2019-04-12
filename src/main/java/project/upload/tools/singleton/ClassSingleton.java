@@ -1,12 +1,20 @@
-package project.upload.singleton;
+package project.upload.tools.singleton;
 
 import org.apache.log4j.Logger;
 import org.jose4j.jwk.JsonWebKey;
 import org.jose4j.jwk.RsaJwkGenerator;
 import org.jose4j.lang.JoseException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
+
 import project.upload.UploadProjectSpringAngularJsBackApplication;
-import project.upload.tools.MyStatic;
+import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.interfaces.MyStatic;
 
 //https://www.baeldung.com/java-singleton
 public class ClassSingleton {
@@ -44,9 +52,7 @@ public class ClassSingleton {
 	}
 	
 	public static void generateJsonWebKeys() {
-		
-		
-		
+
 		for(int i=0;i<3;i++) {
 
 			JsonWebKey jsonWebKey=null;
@@ -69,6 +75,28 @@ public class ClassSingleton {
 		}
 
 	}
+	
+	public static void loadPropertiesFile(){
+
+		try {
+			FileInputStream propFile = new FileInputStream("FileInputStream.properties");
+			MyConstant.PROP.load(propFile);
+			propFile.close();
+			
+		} catch (FileNotFoundException ex) {
+
+			logger.error(ex.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+//	public static void DateToLog4j() {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+//        System.setProperty("current.date.time", dateFormat.format(new Date()));
+//	}
 
 
 }

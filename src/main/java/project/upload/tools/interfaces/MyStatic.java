@@ -1,4 +1,4 @@
-package project.upload.tools;
+package project.upload.tools.interfaces;
 
 import java.util.ArrayList;
 import java.util.HashSet;

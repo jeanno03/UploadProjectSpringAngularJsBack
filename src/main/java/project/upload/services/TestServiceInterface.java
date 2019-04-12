@@ -6,7 +6,7 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import project.upload.dtos.MyUserDto;
 import project.upload.models.MyUser;
-import project.upload.tools.Credential;
+import project.upload.tools.classes.Credential;
 
 public interface TestServiceInterface {
 	

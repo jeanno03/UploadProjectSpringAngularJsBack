@@ -33,13 +33,13 @@ import org.springframework.web.multipart.MultipartFile;
 import project.upload.dtos.MyUserDto;
 import project.upload.models.MySpace;
 import project.upload.models.MyUser;
-import project.upload.reporitories.MySpaceRepository;
-import project.upload.reporitories.MyUserRepository;
+import project.upload.repositories.MySpaceRepository;
+import project.upload.repositories.MyUserRepository;
 import project.upload.services.JwtServiceInterface;
 import project.upload.services.TestServiceInterface;
-import project.upload.tools.Credential;
-import project.upload.tools.MyConstant;
-import project.upload.tools.UploadFormTest;
+import project.upload.tools.classes.Credential;
+import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.tests.UploadFormTest;
 
 @RestController
 @CrossOrigin("*")

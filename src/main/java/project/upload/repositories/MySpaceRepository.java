@@ -1,4 +1,4 @@
-package project.upload.reporitories;
+package project.upload.repositories;
 
 import java.util.List;
 import java.util.Optional;

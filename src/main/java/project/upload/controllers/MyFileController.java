@@ -29,12 +29,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import project.upload.dtos.MyFileDto;
 import project.upload.models.MyFile;
-import project.upload.reporitories.MyFileRepository;
-import project.upload.services.HttpServiceInterface;
+import project.upload.repositories.MyFileRepository;
 import project.upload.services.JwtServiceInterface;
 import project.upload.services.MyFileServiceInterface;
-import project.upload.tools.MyConstant;
-import project.upload.tools.UploadFormTest;
+import project.upload.tools.interfaces.HttpBuilder;
+import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.tests.UploadFormTest;
 
 @RestController
 @CrossOrigin("*")
@@ -44,15 +44,11 @@ public class MyFileController {
 	
 	@Autowired
 	private MyFileServiceInterface myFileService;
-	
-	@Autowired
-	private HttpServiceInterface httpService;
 
 	public MyFileController(MyFileRepository myFileRepository) {
 		super();
 		this.myFileRepository = myFileRepository;
 	}
-	
 
 	//http://localhost:8080/MyFile/uploadingMyFilesPut?id= mySpaceId
 	//https://o7planning.org/fr/11673/le-exemple-de-upload-file-avec-spring-boot-rest-et-angularjs
@@ -66,7 +62,7 @@ public class MyFileController {
 		if(myFilesDto!=null) {
 			return new ResponseEntity<>(myFilesDto,HttpStatus.OK);
 		}else {
-			HashMap<String,String> httpResponse = httpService.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
+			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
 			return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);
 		}
 
