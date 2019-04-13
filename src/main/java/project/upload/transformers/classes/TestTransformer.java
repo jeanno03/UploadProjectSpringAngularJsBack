@@ -1,4 +1,4 @@
-package project.upload.transformers;
+package project.upload.transformers.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import project.upload.models.MyFile;
 import project.upload.models.MyRole;
 import project.upload.models.MySpace;
 import project.upload.models.MyUser;
+import project.upload.transformers.interfaces.TestTransformerInterface;
 
 @Service
 public class TestTransformer implements TestTransformerInterface{

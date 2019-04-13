@@ -17,7 +17,6 @@ public interface MyUserRepository extends JpaRepository<MyUser,Long>{
 	Optional<MyUser> findById(Long id);
 	MyUser findByLoginIgnoreCase(String login);
 
-
 	@Query(value = "select * from my_user mu where mu.login ilike :paramLogin", nativeQuery=true)
 	MyUser selectMyUserByLogin(@Param("paramLogin") String login);
 

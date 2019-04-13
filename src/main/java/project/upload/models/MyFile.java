@@ -14,40 +14,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class MyFile {
-	
+
 	private Long id;
 	private String name;
 	private String path;
 	private String reName;
 	private Date uploadDate;
-	
+
 	private MySpace mySpace;
-	
+
 	public MyFile() {
 		super();
 	}
 
-//	public MyFile(String name, String path, String reName) {
-//		super();
-//		this.name = name;
-//		this.path = path;
-//		this.reName = reName;
-//	}
-	
-	
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long getId() {
-		return id;
-	}
-	
 	public MyFile(String name, String path, String reName, Date uploadDate) {
 		super();
 		this.name = name;
 		this.path = path;
 		this.reName = reName;
 		this.uploadDate = uploadDate;
+	}
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
 	}
 
 	@Transient

@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import project.upload.dtos.MySpaceDto;
 import project.upload.models.MySpace;
-import project.upload.repositories.MySpaceRepository;
-import project.upload.services.MySpaceServiceInterface;
+import project.upload.services.interfaces.MySpaceServiceInterface;
 import project.upload.tools.interfaces.HttpBuilder;
 import project.upload.tools.interfaces.MyConstant;
 
@@ -25,29 +24,26 @@ import project.upload.tools.interfaces.MyConstant;
 public class MySpaceController {
 
 	//inutile si on utilise pas les requete directement dans le controlleur
-	private MySpaceRepository mySpaceRepository;
-
-//	@Autowired
-//	private HttpBuilder httpService;
+	//	private MySpaceRepository mySpaceRepository;
 
 	@Autowired
 	private MySpaceServiceInterface mySpaceService;
 
 	//inutile si on utilise pas les requete directement dans le controlleur
-	public MySpaceController(MySpaceRepository mySpaceRepository) {
-		super();
-		this.mySpaceRepository = mySpaceRepository;
-	}
+	//	public MySpaceController(MySpaceRepository mySpaceRepository) {
+	//		super();
+	//		this.mySpaceRepository = mySpaceRepository;
+	//	}
 
-	//si creation ok va retourner la liste de tous les mySpaces requête native
+	//si creation ok va retourner la liste de tous les MySpaceDto requête native
 	//http://localhost:8080/MySpace/createMySpace
 	@RequestMapping(produces="application/json", value="MySpace/createMySpace", method=RequestMethod.POST)
 	public ResponseEntity<?>createMySpace(@RequestHeader String token, @RequestBody MySpace mySpace){
 
-		List<MySpace> mySpaces = mySpaceService.createMySpaceFromMyUser(token, mySpace);
+		List<MySpaceDto> mySpacesDto = mySpaceService.createMySpaceFromMyUser(token, mySpace);
 
-		if(mySpaces!=null) {
-			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
+		if(mySpacesDto!=null) {
+			return new ResponseEntity<>(mySpacesDto,HttpStatus.OK);
 		}
 		else {
 			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);
@@ -62,10 +58,10 @@ public class MySpaceController {
 	public ResponseEntity<?>getAllMySpace(@RequestHeader String token) {
 
 
-		List<MySpace> mySpaces = mySpaceService.getAllMySpaceFromUser(token);
+		List<MySpaceDto> mySpacesDto = mySpaceService.getAllMySpaceFromUser(token);
 
-		if(mySpaces!=null) {
-			return new ResponseEntity<>(mySpaces,HttpStatus.OK);
+		if(mySpacesDto!=null) {
+			return new ResponseEntity<>(mySpacesDto,HttpStatus.OK);
 		}else {
 			HashMap<String,String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.FORBIDDEN);
 			return new ResponseEntity<>(httpResponse, HttpStatus.FORBIDDEN);

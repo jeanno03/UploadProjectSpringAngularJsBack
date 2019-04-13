@@ -1,4 +1,4 @@
-package project.upload.transformers;
+package project.upload.transformers.interfaces;
 
 import java.util.List;
 

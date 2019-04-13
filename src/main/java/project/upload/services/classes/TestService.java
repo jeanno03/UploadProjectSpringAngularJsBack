@@ -1,4 +1,4 @@
-package project.upload.services;
+package project.upload.services.classes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,9 +18,10 @@ import project.upload.repositories.MyFileRepository;
 import project.upload.repositories.MyRoleRepository;
 import project.upload.repositories.MySpaceRepository;
 import project.upload.repositories.MyUserRepository;
+import project.upload.services.interfaces.TestServiceInterface;
 import project.upload.tools.classes.Credential;
 import project.upload.tools.interfaces.MyConstant;
-import project.upload.transformers.TestTransformerInterface;
+import project.upload.transformers.interfaces.TestTransformerInterface;
 
 @Service
 public class TestService implements TestServiceInterface{
@@ -63,9 +64,7 @@ public class TestService implements TestServiceInterface{
 		
 		mySpace3.setMyUser(myUser2);
 		mySpace4.setMyUser(myUser2);
-		
-		
-		
+
 		MyFile myFile1 = new MyFile ("fiche de paie octobre 2018.pdf", MyConstant.PATH_DIRECTORY+"Albator-005.pdf", "Albator-005.pdf", myDate);
 		MyFile myFile2 = new MyFile ("fiche de paie décembre 2018.pdf", MyConstant.PATH_DIRECTORY+"Albator-006.pdf", "Albator-006.pdf", myDate);
 		MyFile myFile3 = new MyFile ("mon dessin de chien.jpeg", MyConstant.PATH_DIRECTORY+"Albator-007.jpeg", "Albator-007.jpeg"
@@ -135,7 +134,6 @@ public class TestService implements TestServiceInterface{
 			return "Exception";
 		}
 	}
-	
 
 	@Override
 	public MyUserDto getMyUserDtoFullDatas(Credential credential) throws Exception {

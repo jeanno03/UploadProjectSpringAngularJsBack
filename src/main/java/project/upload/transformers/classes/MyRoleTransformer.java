@@ -1,4 +1,4 @@
-package project.upload.transformers;
+package project.upload.transformers.classes;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import project.upload.dtos.MyRoleDto;
 import project.upload.models.MyRole;
 import project.upload.repositories.MyRoleRepository;
-import project.upload.tools.classes.Credential;
+import project.upload.transformers.interfaces.TransformerInterface;
 
 @Service
 @Qualifier("my-role")
 public class MyRoleTransformer implements TransformerInterface{
-	
+
 	@Autowired
 	MyRoleRepository myRoleRepository;
 

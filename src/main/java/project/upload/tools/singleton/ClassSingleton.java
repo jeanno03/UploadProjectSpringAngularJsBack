@@ -92,11 +92,5 @@ public class ClassSingleton {
 		}
 		
 	}
-	
-//	public static void DateToLog4j() {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-//        System.setProperty("current.date.time", dateFormat.format(new Date()));
-//	}
-
 
 }

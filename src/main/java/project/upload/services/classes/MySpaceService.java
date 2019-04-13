@@ -1,10 +1,11 @@
-package project.upload.services;
+package project.upload.services.classes;
 
 import java.util.Date;
 import java.util.List;
 
 import org.jose4j.jwt.JwtClaims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import project.upload.dtos.MySpaceDto;
@@ -12,60 +13,61 @@ import project.upload.models.MySpace;
 import project.upload.models.MyUser;
 import project.upload.repositories.MySpaceRepository;
 import project.upload.repositories.MyUserRepository;
-import project.upload.transformers.MySpaceTransformer;
+import project.upload.services.interfaces.MySpaceServiceInterface;
+import project.upload.transformers.classes.MySpaceTransformer;
+import project.upload.transformers.interfaces.TransformerInterface;
 
 @Service
 public class MySpaceService implements MySpaceServiceInterface{
 
 	@Autowired
 	private MySpaceRepository mySpaceRepository;
-	
+
 	@Autowired
 	private MyUserRepository myUserRepository;
-	
+
 	@Autowired
 	private JwtService jwtService;
-	
-	@Autowired
-	private MySpaceTransformer mySpaceTransformer;
-	
-	@Override
-	public List<MySpace> getAllMySpaceFromUser(String token){
-		
-		List<MySpace> mySpaces = null;
-		
-		try {
-			
-			JwtClaims jwtClaims = jwtService.testJwt(token)	;
-			
-			String login = jwtClaims.getSubject();
-			
-			MyUser myUser = myUserRepository.findByLoginIgnoreCase(login);
 
-			mySpaces = mySpaceRepository.selectMySpaceFromMyUser(login);
+	@Autowired
+	@Qualifier("my-space")
+	private TransformerInterface transformerInterface;
+
+	@Override
+	public List<MySpaceDto> getAllMySpaceFromUser(String token){
+
+		List<MySpaceDto> mySpacesDto = null;
+
+		try {
+
+			JwtClaims jwtClaims = jwtService.testJwt(token)	;
+
+			String myUserLogin = jwtClaims.getSubject();
+
+			mySpacesDto = transformerInterface.getMyListDto(myUserLogin);
 
 		}catch(Exception ex) {
 
 			ex.printStackTrace();
 		}
-		
-		return mySpaces;
+
+		return mySpacesDto;
 	}
-	
+
 	@Override
-	public List<MySpace> createMySpaceFromMyUser(String token, MySpace mySpace){
-		
-		List<MySpace> mySpaces = null;
-		
+	public List<MySpaceDto> createMySpaceFromMyUser(String token, MySpace mySpace){
+
+		List<MySpaceDto> mySpacesDto = null;
+
 		try {
-			
+
 			JwtClaims jwtClaims = jwtService.testJwt(token)	;
 
 			Date myDate = new Date();
-			
-			String login = jwtClaims.getSubject();
-			
-			MyUser myUser = myUserRepository.findByLoginIgnoreCase(login);
+
+			String myUserLogin = jwtClaims.getSubject();
+
+			MyUser myUser = myUserRepository.findByLoginIgnoreCase(myUserLogin);
 
 			MySpace mySpaceToSave = new MySpace(mySpace.getName(), mySpace.getDescription(), myDate);
 
@@ -73,34 +75,31 @@ public class MySpaceService implements MySpaceServiceInterface{
 
 			mySpaceRepository.save(mySpaceToSave);
 
-			mySpaces = mySpaceRepository.selectMySpaceFromMyUser(login);
+			mySpacesDto = transformerInterface.getMyListDto(myUserLogin);
 
 		}catch(Exception ex) {
 
 			ex.printStackTrace();
 		}
-		
-		return mySpaces;
+
+		return mySpacesDto;
 	}
-	
+
 	@Override
-	public MySpaceDto getMySpaceDtoByNameJwt(String token, String name) {
-		
+	public MySpaceDto getMySpaceDtoByNameJwt(String token, String mySpaceName) {
+
 		MySpaceDto mySpaceDto = null;
-		
+
 		try {
 			//si ok on continue
 			JwtClaims jwtClaims = jwtService.testJwt(token);
-			
-			//on utilise query de springboot car mySpace ne comporte pas bcp de dependance
-			MySpace mySpace = mySpaceRepository.findByNameIgnoreCase(name);
-			
-			mySpaceDto = mySpaceTransformer.getMySpaceDto(mySpace);
-			
+
+			mySpaceDto = (MySpaceDto) transformerInterface.getSimpleDto(mySpaceName);
+
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		return mySpaceDto;
 	}
 

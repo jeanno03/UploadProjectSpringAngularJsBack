@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import project.upload.repositories.MyUserRepository;
-import project.upload.services.JwtService;
-import project.upload.services.JwtServiceInterface;
+import project.upload.services.interfaces.JwtServiceInterface;
 import project.upload.tools.classes.Credential;
 import project.upload.tools.interfaces.HttpBuilder;
 import project.upload.tools.interfaces.MyConstant;
@@ -28,7 +26,7 @@ import project.upload.tools.interfaces.MyConstant;
 public class MyUserController {
 	
 	//inutile 
-	private MyUserRepository myUserRepository;
+//	private MyUserRepository myUserRepository;
 	
 	@Autowired
 	private JwtServiceInterface jwtService;
@@ -40,11 +38,11 @@ public class MyUserController {
 	
 	//constructeur inutile
 	//a utiliser seulement si on utilise myUserRepository
-	public MyUserController(MyUserRepository myUserRepository) {
-		super();
-		this.myUserRepository = myUserRepository;
-	}
-		
+//	public MyUserController(MyUserRepository myUserRepository) {
+//		super();
+//		this.myUserRepository = myUserRepository;
+//	}
+//		
 	//si connection ok return token
 	//http://localhost:8080/MyUser/getConnectJwt
 	@RequestMapping(value="MyUser/getConnectJwt",method=RequestMethod.POST)

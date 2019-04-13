@@ -1,4 +1,4 @@
-package project.upload.transformers;
+package project.upload.transformers.interfaces;
 
 import project.upload.dtos.MyUserDto;
 import project.upload.models.MyUser;

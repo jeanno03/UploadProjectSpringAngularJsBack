@@ -35,8 +35,7 @@ import project.upload.models.MySpace;
 import project.upload.models.MyUser;
 import project.upload.repositories.MySpaceRepository;
 import project.upload.repositories.MyUserRepository;
-import project.upload.services.JwtServiceInterface;
-import project.upload.services.TestServiceInterface;
+import project.upload.services.interfaces.TestServiceInterface;
 import project.upload.tools.classes.Credential;
 import project.upload.tools.interfaces.MyConstant;
 import project.upload.tools.tests.UploadFormTest;
@@ -51,9 +50,6 @@ public class TestController {
 	
 	@Autowired
 	private TestServiceInterface testService;
-	
-	@Autowired
-	private JwtServiceInterface jwtService;
 	
 	final static Logger logger = Logger.getLogger(TestController.class);
 
@@ -152,7 +148,6 @@ public class TestController {
 
         HttpHeaders header = new HttpHeaders();
         header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+image+EXTENSION);
-//        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=img.jpg");
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
         header.add("Pragma", "no-cache");
         header.add("Expires", "0");

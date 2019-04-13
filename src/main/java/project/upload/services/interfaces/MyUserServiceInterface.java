@@ -1,4 +1,4 @@
-package project.upload.services;
+package project.upload.services.interfaces;
 
 public interface MyUserServiceInterface {
 

@@ -1,4 +1,4 @@
-package project.upload.services;
+package project.upload.services.classes;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,11 +31,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import project.upload.tools.classes.Credential;
 import project.upload.tools.interfaces.MyConstant;
 import project.upload.tools.interfaces.MyStatic;
-import project.upload.transformers.TransformerInterface;
+import project.upload.transformers.interfaces.TransformerInterface;
 import project.upload.dtos.MyRoleDto;
 import project.upload.models.MyUser;
 import project.upload.repositories.MyRoleRepository;
 import project.upload.repositories.MyUserRepository;
+import project.upload.services.interfaces.JwtServiceInterface;
 
 @Service
 public class JwtService implements JwtServiceInterface{
@@ -45,18 +46,15 @@ public class JwtService implements JwtServiceInterface{
 
 	@Autowired
 	MyRoleRepository myRoleRepository;
-	
+
 	@Autowired
 	@Qualifier("my-role")
 	TransformerInterface transformerInterface;
-
 
 	final static Logger logger = Logger.getLogger(JwtService.class);
 
 	@Override
 	public String getConnectReturnToken(Credential credential){
-		
-		
 
 		String jwt = null;
 
@@ -69,14 +67,14 @@ public class JwtService implements JwtServiceInterface{
 				//je contruit List<MyRoleDto> myRolesDto 
 
 				List<MyRoleDto> myRolesDto = transformerInterface.getMyListDto(credential.getLogin());
-				
+
 				myRolesDto.forEach(System.out::println);
 				myRolesDto.forEach(m->{
 					logger.info("MyRolesDto Id : " + m.getId());
 				});
 				//je génère List<String>rolesString
 				List<String>rolesString= getRolesString(myRolesDto);	
-				
+
 				int kidRandom = generateRandmoKid();
 
 				RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) MyStatic.jsonWebKeys.get(kidRandom);
@@ -127,7 +125,6 @@ public class JwtService implements JwtServiceInterface{
 
 		return jwt;
 	}
-
 
 	@Override
 	public JwtClaims testJwt(String token) {
@@ -241,15 +238,15 @@ public class JwtService implements JwtServiceInterface{
 		byte[] digest = digestSHA3.digest(password.getBytes()); 
 		return Hex.toHexString(digest);
 	}
-	
+
 	private List<String> getRolesString(List <MyRoleDto> myRolesDto){
-		
+
 		List<String>rolesString=new ArrayList();
-		
+
 		myRolesDto.forEach(m->{
 			rolesString.add(m.getName());
 		});
-		
+
 		return rolesString;
 	}
 

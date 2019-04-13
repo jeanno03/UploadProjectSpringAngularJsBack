@@ -50,3 +50,82 @@
 2019-04-13 00:32:27 INFO  JwtService:75 - MyRolesDto Id : 17
 2019-04-13 00:32:27 INFO  JwtService:106 - Test connection successfull - login : Albator
 2019-04-13 00:32:27 INFO  JwtService:107 - Kid number : 1
+2019-04-13 10:43:38 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 10:43:39 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 10:43:39 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 10:43:40 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 10:43:41 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 10:43:55 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 10:44:01 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 10:44:01 INFO  JwtService:234 - test connection : true
+2019-04-13 10:44:01 INFO  JwtService:76 - MyRolesDto Id : 15
+2019-04-13 10:44:01 INFO  JwtService:76 - MyRolesDto Id : 16
+2019-04-13 10:44:01 INFO  JwtService:76 - MyRolesDto Id : 17
+2019-04-13 10:44:01 INFO  JwtService:107 - Test connection successfull - login : Albator
+2019-04-13 10:44:01 INFO  JwtService:108 - Kid number : 1
+2019-04-13 10:50:57 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 10:50:58 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 10:51:00 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 10:51:00 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 10:51:00 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 10:51:10 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 10:51:14 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 10:51:14 INFO  JwtService:234 - test connection : true
+2019-04-13 10:51:14 INFO  JwtService:76 - MyRolesDto Id : 15
+2019-04-13 10:51:14 INFO  JwtService:76 - MyRolesDto Id : 16
+2019-04-13 10:51:14 INFO  JwtService:76 - MyRolesDto Id : 17
+2019-04-13 10:51:14 INFO  JwtService:107 - Test connection successfull - login : Albator
+2019-04-13 10:51:14 INFO  JwtService:108 - Kid number : 1
+2019-04-13 11:14:29 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 11:14:30 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 11:14:35 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 11:14:37 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 11:14:37 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 11:14:48 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 11:14:51 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 11:14:51 INFO  JwtService:234 - test connection : true
+2019-04-13 11:14:51 INFO  JwtService:76 - MyRolesDto Id : 15
+2019-04-13 11:14:51 INFO  JwtService:76 - MyRolesDto Id : 16
+2019-04-13 11:14:51 INFO  JwtService:76 - MyRolesDto Id : 17
+2019-04-13 11:14:51 INFO  JwtService:107 - Test connection successfull - login : Albator
+2019-04-13 11:14:51 INFO  JwtService:108 - Kid number : 1
+2019-04-13 11:19:29 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 11:19:30 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 11:19:31 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 11:19:33 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 11:19:33 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 11:20:01 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 11:20:04 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 11:20:05 INFO  JwtService:234 - test connection : true
+2019-04-13 11:20:05 INFO  JwtService:76 - MyRolesDto Id : 15
+2019-04-13 11:20:05 INFO  JwtService:107 - Test connection successfull - login : Dartagnan
+2019-04-13 11:20:05 INFO  JwtService:108 - Kid number : 0
+2019-04-13 11:31:49 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 11:31:50 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 11:31:50 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 11:31:52 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 11:31:52 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 11:32:09 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 11:32:31 INFO  TestController:69 - API Test/getDataTest 
+2019-04-13 11:33:24 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 11:33:24 INFO  JwtService:234 - test connection : false
+2019-04-13 11:33:29 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 11:33:29 INFO  JwtService:234 - test connection : false
+2019-04-13 11:33:33 INFO  MyUserController:53 - Api : MyUser/getConnectJwt
+2019-04-13 11:33:33 INFO  JwtService:234 - test connection : true
+2019-04-13 11:33:33 INFO  JwtService:76 - MyRolesDto Id : 15
+2019-04-13 11:33:33 INFO  JwtService:107 - Test connection successfull - login : Dartagnan
+2019-04-13 11:33:33 INFO  JwtService:108 - Kid number : 0
+2019-04-13 11:45:58 INFO  UploadProjectSpringAngularJsBackApplication:31 - ClassSingleton start
+2019-04-13 11:46:01 INFO  ClassSingleton:67 - JsonWebKeys number : 0 generate
+2019-04-13 11:46:02 INFO  ClassSingleton:67 - JsonWebKeys number : 1 generate
+2019-04-13 11:46:03 INFO  ClassSingleton:67 - JsonWebKeys number : 2 generate
+2019-04-13 11:46:03 INFO  UploadProjectSpringAngularJsBackApplication:36 - Hello world!
+2019-04-13 11:46:11 INFO  TestController:65 - API Test/getDataTest 
+2019-04-13 11:46:37 INFO  MyUserController:51 - Api : MyUser/getConnectJwt
+2019-04-13 11:46:37 INFO  JwtService:230 - test connection : true
+2019-04-13 11:46:37 INFO  JwtService:73 - MyRolesDto Id : 15
+2019-04-13 11:46:37 INFO  JwtService:73 - MyRolesDto Id : 16
+2019-04-13 11:46:37 INFO  JwtService:73 - MyRolesDto Id : 17
+2019-04-13 11:46:37 INFO  JwtService:104 - Test connection successfull - login : Albator
+2019-04-13 11:46:37 INFO  JwtService:105 - Kid number : 1

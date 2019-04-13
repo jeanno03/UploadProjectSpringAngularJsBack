@@ -1,4 +1,4 @@
-package project.upload.services;
+package project.upload.services.classes;
 
 import java.io.File;
 import java.util.Date;
@@ -18,9 +18,11 @@ import project.upload.models.MyUser;
 import project.upload.repositories.MyFileRepository;
 import project.upload.repositories.MySpaceRepository;
 import project.upload.repositories.MyUserRepository;
+import project.upload.services.interfaces.JwtServiceInterface;
+import project.upload.services.interfaces.MyFileServiceInterface;
 import project.upload.tools.interfaces.MyConstant;
-import project.upload.transformers.MyFileTransformer;
-import project.upload.transformers.TransformerInterface;
+import project.upload.transformers.classes.MyFileTransformer;
+import project.upload.transformers.interfaces.TransformerInterface;
 
 @Service
 public class MyFileService implements MyFileServiceInterface{
@@ -37,19 +39,12 @@ public class MyFileService implements MyFileServiceInterface{
 	@Autowired
 	private JwtServiceInterface jwtService;
 
-//	@Autowired
-//	private MyFileTransformer myFileTransformer;
-	
-//	@Autowired
-//	private TransformerInterface transformerInterface;
-	
 	@Autowired
 	@Qualifier("my-file")
 	TransformerInterface transformerInterface;
 
 	@Override
 	public List<MyFileDto> saveMyFiles(String token, Long id, MultipartFile[] multipartFile) {
-
 
 		List<MyFileDto> myFilesDto = null;
 
@@ -104,28 +99,28 @@ public class MyFileService implements MyFileServiceInterface{
 
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			
+
 		}
 
 		return myFilesDto;
 
 	}
-	
+
 	@Override
 	public MyFileDto getDownLoadingMyFileDto(String token, Long id) {
 
 		MyFileDto myFileDto = null;
-		
+
 		try {
-			
+
 			JwtClaims jwtClaims = jwtService.testJwt(token);
 
 			myFileDto = (MyFileDto) transformerInterface.getSimpleDto(String.valueOf(id));
-			
+
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		return myFileDto;
 	}
 
@@ -137,7 +132,7 @@ public class MyFileService implements MyFileServiceInterface{
 		String extension = "";
 
 		try {
-			
+
 			String[] parts = myLastFile.getName().split("\\.");
 			int size = parts.length;
 			extension = "." + parts[size-1];
