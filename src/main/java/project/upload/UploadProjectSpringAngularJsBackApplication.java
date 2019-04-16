@@ -6,13 +6,14 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import project.upload.tools.interfaces.MyConstant;
 import project.upload.tools.singleton.ClassSingleton;
 
-
+//pour déployer sous tomcat extends SpringBootServletInitializer
 @SpringBootApplication
-public class UploadProjectSpringAngularJsBackApplication {
+public class UploadProjectSpringAngularJsBackApplication extends SpringBootServletInitializer{
 
 	static {
 		try {
