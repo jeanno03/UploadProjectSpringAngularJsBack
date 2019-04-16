@@ -1,16 +1,15 @@
-package projet.upload;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class UploadProjectSpringAngularJsApplicationTests {
-
-	@Test
-	public void contextLoads() {
-	}
-
-}
+//package projet.upload;
+//
+//import org.junit.jupiter.api.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.junit4.SpringRunner;
+//
+//@SpringBootTest
+//public class UploadProjectSpringAngularJsApplicationTests {
+//
+//	@Test
+//	public void contextLoads() {
+//	}
+//
+//}

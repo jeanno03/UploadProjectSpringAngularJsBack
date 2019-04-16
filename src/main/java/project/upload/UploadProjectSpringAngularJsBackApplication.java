@@ -15,8 +15,12 @@ import project.upload.tools.singleton.ClassSingleton;
 public class UploadProjectSpringAngularJsBackApplication {
 
 	static {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		System.setProperty("current.date.time", dateFormat.format(new Date()));
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+			System.setProperty("current.date.time", dateFormat.format(new Date()));
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 
