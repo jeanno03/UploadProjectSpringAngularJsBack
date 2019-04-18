@@ -59,9 +59,11 @@ public class TestController {
 		this.mySpaceRepository = mySpaceRepository;
 	}
 	
+//	http://power-ged.com:8080/Main/Test/getDataTest
 	//http://localhost:8080/Test/getDataTest
 	@RequestMapping(value="Test/getDataTest", method= RequestMethod.GET)
 	public String getDataTest(@RequestHeader String bearer) {
+//	public String getDataTest() {
 		logger.info("API Test/getDataTest ");
 		if(testService.authorizeTest(bearer)) {
 			String result = testService.getDataTest();
@@ -71,9 +73,11 @@ public class TestController {
 		return "{\"return\":\""+MyConstant.FORBIDDEN+"\"}";
 	}
 	
+//	http://power-ged.com:8080/Main/Test/getShowDataTest
 	//http://localhost:8080/Test/getShowDataTest
 	@RequestMapping(value="Test/getShowDataTest", method= RequestMethod.GET)
 	public Optional<MyUser> getShowDataTest(@RequestHeader String bearer) {
+//	public Optional<MyUser> getShowDataTest() {
 		return myUserRepository.findById(1L);
 	}
 	
@@ -126,7 +130,8 @@ public class TestController {
     public ResponseEntity<Resource> download(String param) throws IOException {
 
         // ...
-    	File file = new File("/home/jeanno/UploadProject/my_user_2_my_space_9_my_file_18.pdf");
+//    	File file = new File("/home/jeanno/UploadProject/my_user_2_my_space_9_my_file_18.pdf");
+    	File file = new File(MyConstant.PATH_DIRECTORY + "my_user_2_my_space_9_my_file_18.pdf");
     	file.renameTo(file);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
    
@@ -136,16 +141,19 @@ public class TestController {
                 .body(resource);
     }
     
+//    http://power-ged.com:8080/Main/Test/download2?image=Albator-007
     //http://localhost:8080/Test/download2?image=Albator-007
     @RequestMapping(path = "/Test/download2", method = RequestMethod.GET)
     public ResponseEntity<Resource> download2(@RequestParam("image") String image) throws IOException {
     	
         String EXTENSION = ".jpeg";
-        String SERVER_LOCATION = "/home/jeanno/UploadProject";
+//        String SERVER_LOCATION = "/home/jeanno/UploadProject";
+        String SERVER_LOCATION = MyConstant.PATH_DIRECTORY; 
         
+//        File file = new File(SERVER_LOCATION + File.separator + image + EXTENSION);
         
-        File file = new File(SERVER_LOCATION + File.separator + image + EXTENSION);
-
+        File file = new File(SERVER_LOCATION + image + EXTENSION);
+        
         HttpHeaders header = new HttpHeaders();
         header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+image+EXTENSION);
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
