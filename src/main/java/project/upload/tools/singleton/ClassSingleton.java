@@ -51,46 +51,48 @@ public class ClassSingleton {
 		this.info = info;
 	}
 	
-	public static void generateJsonWebKeys() {
-
-		for(int i=0;i<3;i++) {
-
-			JsonWebKey jsonWebKey=null;
-
-			try {
-				int kid=i;
-
-				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
-				jsonWebKey.setKeyId(String.valueOf(kid));
-				
-				MyStatic.jsonWebKeys.add(jsonWebKey);
-				logger.info("JsonWebKeys number : " + i + " generate");
-
-			}catch(JoseException ex) {
-				ex.printStackTrace();
-			}catch(Exception ex) {
-				ex.printStackTrace();
-			}
-
-		}
-
-	}
+//	public static void generateJsonWebKeys() {
+//
+//		for(int i=0;i<3;i++) {
+//
+//			JsonWebKey jsonWebKey=null;
+//
+//			try {
+//				int kid=i;
+//
+//				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
+//				jsonWebKey.setKeyId(String.valueOf(kid));
+//				
+//				MyStatic.jsonWebKeys.add(jsonWebKey);
+//				logger.info("JsonWebKeys number : " + i + " generate");
+//
+//			}catch(JoseException ex) {
+//				ex.printStackTrace();
+//			}catch(Exception ex) {
+//				ex.printStackTrace();
+//			}
+//
+//		}
+//
+//	}
 	
-	public static void loadPropertiesFile(){
+//	public static void loadPropertiesFile(){
+//
+//		try {
+////			FileInputStream propFile = new FileInputStream("/home/jeanno/files/FileInputStream.properties");
+//			FileInputStream propFile = new FileInputStream("/home/powerged/files/FileInputStream.properties");
+//			MyConstant.PROP.load(propFile);
+//			propFile.close();
+//			
+//		} catch (FileNotFoundException ex) {
+//
+//			logger.error(ex.getMessage());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
-		try {
-			FileInputStream propFile = new FileInputStream("FileInputStream.properties");
-			MyConstant.PROP.load(propFile);
-			propFile.close();
-			
-		} catch (FileNotFoundException ex) {
-
-			logger.error(ex.getMessage());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
 }

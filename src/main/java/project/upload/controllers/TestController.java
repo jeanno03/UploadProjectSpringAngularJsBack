@@ -38,19 +38,20 @@ import project.upload.repositories.MyUserRepository;
 import project.upload.services.interfaces.TestServiceInterface;
 import project.upload.tools.classes.Credential;
 import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.interfaces.MyStatic;
 import project.upload.tools.tests.UploadFormTest;
 
 @RestController
 @CrossOrigin("*")
 public class TestController {
-	
+
 	private MyUserRepository myUserRepository;
-	
+
 	private MySpaceRepository mySpaceRepository;
-	
+
 	@Autowired
 	private TestServiceInterface testService;
-	
+
 	final static Logger logger = Logger.getLogger(TestController.class);
 
 	public TestController(MyUserRepository myUserRepository, MySpaceRepository mySpaceRepository) {
@@ -58,40 +59,54 @@ public class TestController {
 		this.myUserRepository = myUserRepository;
 		this.mySpaceRepository = mySpaceRepository;
 	}
-	
-//	http://power-ged.com:8080/Main/Test/getDataTest
+
+	//	http://power-ged.com:8080/Main/Test/getDataTest
 	//http://localhost:8080/Test/getDataTest
 	@RequestMapping(value="Test/getDataTest", method= RequestMethod.GET)
-	public String getDataTest(@RequestHeader String bearer) {
-//	public String getDataTest() {
+	public String getDataTest() {
 		logger.info("API Test/getDataTest ");
-		if(testService.authorizeTest(bearer)) {
-			String result = testService.getDataTest();
-			return "{\"return\":\""+result+"\"}";
-		}	
-		
-		return "{\"return\":\""+MyConstant.FORBIDDEN+"\"}";
+		String result = testService.getDataTest();
+		return "{\"return\":\""+result+"\"}";
 	}
-	
-//	http://power-ged.com:8080/Main/Test/getShowDataTest
+
+	//	@RequestMapping(value="Test/getDataTest", method= RequestMethod.GET)
+	//	public String getDataTest(@RequestHeader String bearer) {
+	//		logger.info("API Test/getDataTest ");
+	//		if(testService.authorizeTest(bearer)) {
+	//			String result = testService.getDataTest();
+	//			return "{\"return\":\""+result+"\"}";
+	//		}		
+	//		return "{\"return\":\""+MyConstant.FORBIDDEN+"\"}";
+	//	}
+
+	//	http://power-ged.com:8080/Main/Test/getShowDataTest
 	//http://localhost:8080/Test/getShowDataTest
 	@RequestMapping(value="Test/getShowDataTest", method= RequestMethod.GET)
-	public Optional<MyUser> getShowDataTest(@RequestHeader String bearer) {
-//	public Optional<MyUser> getShowDataTest() {
+	public Optional<MyUser> getShowDataTest() {
 		return myUserRepository.findById(1L);
 	}
-	
+
+	//	@RequestMapping(value="Test/getShowDataTest", method= RequestMethod.GET)
+	//	public Optional<MyUser> getShowDataTest(@RequestHeader String bearer) {
+	//		return myUserRepository.findById(1L);
+	//	}
+
 	//http://localhost:8080/Test/getAllUsersTest
 	@RequestMapping(value="Test/getAllUsersTest", method=RequestMethod.GET)
-	public List<MyUser> getAllUsersTest(@RequestHeader String bearer){
+	public List<MyUser> getAllUsersTest(){
 		return myUserRepository.findAll();
 	}
-	
+
+	//	@RequestMapping(value="Test/getAllUsersTest", method=RequestMethod.GET)
+	//	public List<MyUser> getAllUsersTest(@RequestHeader String bearer){
+	//		return myUserRepository.findAll();
+	//	}
+
 	// getMyUserDtoFullDatas => non adapté
 	//http://localhost:8080/Test/getConnect
 	@RequestMapping(value="Test/getConnect",method=RequestMethod.POST)
 	public ResponseEntity<?> getConnect(@RequestBody Credential credential) throws Exception {
-		
+
 		MyUserDto myUserDto = testService.getMyUserDtoFullDatas(credential);
 		if(myUserDto==null) {
 			return new ResponseEntity<String>("{\"return\":\"Unauthorized\"}", HttpStatus.UNAUTHORIZED);
@@ -103,72 +118,73 @@ public class TestController {
 
 	//http://localhost:8080/Test/uploadingPost
 	//https://o7planning.org/fr/11673/le-exemple-de-upload-file-avec-spring-boot-rest-et-angularjs
-    @RequestMapping(value = "/Test/uploadingPost", method = RequestMethod.POST)
-    public String uploadingPost(@ModelAttribute UploadFormTest form) throws IOException{
-		String uploadingDir = MyConstant.PATH_DIRECTORY;
-		
+	@RequestMapping(value = "/Test/uploadingPost", method = RequestMethod.POST)
+	public String uploadingPost(@ModelAttribute UploadFormTest form) throws IOException{
+		String path = MyConstant.PATH;
+
+		String uploadingDir = path;
+
 		System.out.println("API /Test/uploadingPost");
 		System.out.println("description : " + form.getDescription());
-		
-        for(MultipartFile uploadedFile : form.getFiles()) {
-            File file = new File(uploadingDir + uploadedFile.getOriginalFilename());
-            uploadedFile.transferTo(file);
-        }
-		
+
+		for(MultipartFile uploadedFile : form.getFiles()) {
+			File file = new File(uploadingDir + uploadedFile.getOriginalFilename());
+			uploadedFile.transferTo(file);
+		}
+
 		return "success";
 	}
-    
+
 	//http://localhost:8080/Test/getTestCustomQueryMySpace
-    @RequestMapping(value="/Test/getTestCustomQueryMySpace", method=RequestMethod.GET) 
-    public List<MySpace> getTestCustomQueryMySpace(){
-    	List<MySpace> mySpaces = mySpaceRepository.selectMySpaceFromMyUser("dartagnan");
-    	return mySpaces;
-    }
-    
-    //http://localhost:8080/Test/download
-    @RequestMapping(path = "/Test/download", method = RequestMethod.GET)
-    public ResponseEntity<Resource> download(String param) throws IOException {
+	@RequestMapping(value="/Test/getTestCustomQueryMySpace", method=RequestMethod.GET) 
+	public List<MySpace> getTestCustomQueryMySpace(){
+		List<MySpace> mySpaces = mySpaceRepository.selectMySpaceFromMyUser("dartagnan");
+		return mySpaces;
+	}
 
-        // ...
-//    	File file = new File("/home/jeanno/UploadProject/my_user_2_my_space_9_my_file_18.pdf");
-    	File file = new File(MyConstant.PATH_DIRECTORY + "my_user_2_my_space_9_my_file_18.pdf");
-    	file.renameTo(file);
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-   
-        return ResponseEntity.ok()
-                .contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
-    }
-    
-//    http://power-ged.com:8080/Main/Test/download2?image=Albator-007
-    //http://localhost:8080/Test/download2?image=Albator-007
-    @RequestMapping(path = "/Test/download2", method = RequestMethod.GET)
-    public ResponseEntity<Resource> download2(@RequestParam("image") String image) throws IOException {
-    	
-        String EXTENSION = ".jpeg";
-//        String SERVER_LOCATION = "/home/jeanno/UploadProject";
-        String SERVER_LOCATION = MyConstant.PATH_DIRECTORY; 
-        
-//        File file = new File(SERVER_LOCATION + File.separator + image + EXTENSION);
-        
-        File file = new File(SERVER_LOCATION + image + EXTENSION);
-        
-        HttpHeaders header = new HttpHeaders();
-        header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+image+EXTENSION);
-        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        header.add("Pragma", "no-cache");
-        header.add("Expires", "0");
+	//http://localhost:8080/Test/download
+	@RequestMapping(path = "/Test/download", method = RequestMethod.GET)
+	public ResponseEntity<Resource> download(String param) throws IOException {
+		String path = MyConstant.PATH;
 
-        Path path = Paths.get(file.getAbsolutePath());
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+		File file = new File(path + "my_user_2_my_space_9_my_file_18.pdf");
+		file.renameTo(file);
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
-        return ResponseEntity.ok()
-                .headers(header)
-                .contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
-                .body(resource);
-    }
-	
+		return ResponseEntity.ok()
+				.contentLength(file.length())
+				.contentType(MediaType.parseMediaType("application/octet-stream"))
+				.body(resource);
+	}
+
+	//    http://power-ged.com:8080/Main/Test/download2?image=Albator-007
+	//http://localhost:8080/Test/download2?image=Albator-007
+	@RequestMapping(path = "/Test/download2", method = RequestMethod.GET)
+	public ResponseEntity<Resource> download2(@RequestParam("image") String image) throws IOException {
+		String path = MyConstant.PATH;
+
+		String EXTENSION = ".jpeg";
+		//        String SERVER_LOCATION = "/home/jeanno/UploadProject";
+		String SERVER_LOCATION = path; 
+
+		//        File file = new File(SERVER_LOCATION + File.separator + image + EXTENSION);       
+		File file = new File(SERVER_LOCATION + image + EXTENSION);
+
+		HttpHeaders header = new HttpHeaders();
+		header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+image+EXTENSION);
+		header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		header.add("Pragma", "no-cache");
+		header.add("Expires", "0");
+
+		Path path2 = Paths.get(file.getAbsolutePath());
+		ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path2));
+
+		return ResponseEntity.ok()
+				.headers(header)
+				.contentLength(file.length())
+				.contentType(MediaType.parseMediaType("application/octet-stream"))
+				.body(resource);
+	}
+
 
 }

@@ -9,6 +9,6 @@ import org.jose4j.jwk.JsonWebKey;
 
 public interface MyStatic {
 	
-	static List<JsonWebKey> jsonWebKeys = new ArrayList();
+//	static List<JsonWebKey> jsonWebKeys = new ArrayList();
 
 }

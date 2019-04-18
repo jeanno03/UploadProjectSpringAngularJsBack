@@ -1,6 +1,9 @@
 package project.upload.services.classes;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +24,10 @@ import project.upload.repositories.MyUserRepository;
 import project.upload.services.interfaces.JwtServiceInterface;
 import project.upload.services.interfaces.MyFileServiceInterface;
 import project.upload.tools.interfaces.MyConstant;
+import project.upload.tools.interfaces.MyStatic;
 import project.upload.transformers.classes.MyFileTransformer;
 import project.upload.transformers.interfaces.TransformerInterface;
-
+import java.util.Properties;
 @Service
 public class MyFileService implements MyFileServiceInterface{
 
@@ -45,6 +49,8 @@ public class MyFileService implements MyFileServiceInterface{
 
 	@Override
 	public List<MyFileDto> saveMyFiles(String token, Long id, MultipartFile[] multipartFile) {
+		
+//		String path = MyConstant.PROP.getProperty("path_directory");
 
 		List<MyFileDto> myFilesDto = null;
 
@@ -77,8 +83,8 @@ public class MyFileService implements MyFileServiceInterface{
 				String reName = generateRename(login, mySpace, myLastFile);
 				myLastFile.setReName(reName);
 
-				String path = MyConstant.PATH_DIRECTORY + reName;
-				myLastFile.setPath(path);
+				String fullPath = MyConstant.PATH + reName;
+				myLastFile.setPath(fullPath);
 				myLastFile.setUploadDate(myDate);
 
 				//3 je sauvegarde dans bdd
@@ -86,7 +92,7 @@ public class MyFileService implements MyFileServiceInterface{
 
 				//4 je sauvegarde dans disk dur
 
-				File file = new File(path);
+				File file = new File(fullPath);
 				uploadedFile.transferTo(file);
 
 				//5 Pause for 4 seconds

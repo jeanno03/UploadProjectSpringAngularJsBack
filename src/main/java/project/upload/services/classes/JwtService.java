@@ -12,6 +12,7 @@ import org.bouncycastle.util.encoders.Hex;
 import org.jose4j.jwk.JsonWebKey;
 import org.jose4j.jwk.JsonWebKeySet;
 import org.jose4j.jwk.RsaJsonWebKey;
+import org.jose4j.jwk.RsaJwkGenerator;
 import org.jose4j.jws.AlgorithmIdentifiers;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
@@ -52,6 +53,35 @@ public class JwtService implements JwtServiceInterface{
 	TransformerInterface transformerInterface;
 
 	final static Logger logger = Logger.getLogger(JwtService.class);
+	
+	static List<JsonWebKey> jsonWebKeys = new ArrayList();
+	
+	static {
+		
+		
+
+		for(int i=0;i<3;i++) {
+
+			JsonWebKey jsonWebKey=null;
+
+			try {
+				int kid=i;
+
+				jsonWebKey=RsaJwkGenerator.generateJwk(2048);
+				jsonWebKey.setKeyId(String.valueOf(kid));
+
+				jsonWebKeys.add(jsonWebKey);
+				logger.info("JsonWebKeys number : " + i + " generate");
+
+			}catch(JoseException ex) {
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+
+		}
+
+	}
 
 	@Override
 	public String getConnectReturnToken(Credential credential){
@@ -61,7 +91,12 @@ public class JwtService implements JwtServiceInterface{
 		try {
 			//d'abord un boolean
 			boolean testCredential = testCredential(credential);
-
+			
+			logger.info("login : " + credential.getLogin());
+			logger.info("getPassword : " + credential.getPassword());
+			
+			logger.info("testCredential : " + testCredential);
+			
 			if(testCredential) {
 
 				//je contruit List<MyRoleDto> myRolesDto 
@@ -77,7 +112,10 @@ public class JwtService implements JwtServiceInterface{
 
 				int kidRandom = generateRandmoKid();
 
-				RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) MyStatic.jsonWebKeys.get(kidRandom);
+				RsaJsonWebKey rsaJsonWebKey = (RsaJsonWebKey) jsonWebKeys.get(kidRandom);
+				
+				logger.info("MyStatic.jsonWebKeys.get(kidRandom) : " + jsonWebKeys.get(kidRandom));
+				
 
 				JwtClaims jwtClaims = new JwtClaims();
 				// Create the Claims, which will be the content of the JWT
@@ -113,16 +151,17 @@ public class JwtService implements JwtServiceInterface{
 			else 
 			{
 				jwt = null;
+				logger.info("jwt est null : " + jwt);
 			}
 
 		}catch(NullPointerException ex) {
-			//			ex.printStackTrace();
+			//ex.printStackTrace();
 			logger.error(ex.getMessage());
 		} catch (Exception ex) {
 			// TODO Auto-generated catch block
 			logger.error(ex.getMessage());
 		}
-
+		logger.info("jwt : " + jwt);
 		return jwt;
 	}
 
@@ -165,7 +204,7 @@ public class JwtService implements JwtServiceInterface{
 			}
 
 			//Je parcours MyStatic.jsonWebKeys en fonction du kid 
-			JsonWebKeySet jsonWebKeySet = new JsonWebKeySet(MyStatic.jsonWebKeys); 
+			JsonWebKeySet jsonWebKeySet = new JsonWebKeySet(jsonWebKeys); 
 			JsonWebKey jsonWebKey = jsonWebKeySet.findJsonWebKey(kidV1, null,  null,  null);
 			System.out.println("JWK (" + kidV1 + ") ===> " + jsonWebKey.toJson());
 			// Validate Token's authenticity and check claims
