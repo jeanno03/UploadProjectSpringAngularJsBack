@@ -96,7 +96,7 @@ public class MyFileService implements MyFileServiceInterface{
 				uploadedFile.transferTo(file);
 
 				//5 Pause for 4 seconds
-				Thread.sleep(4000);
+				Thread.sleep(1000);
 
 			}
 
