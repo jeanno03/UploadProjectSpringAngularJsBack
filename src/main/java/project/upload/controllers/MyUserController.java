@@ -49,8 +49,7 @@ public class MyUserController {
 	public ResponseEntity<?> getConnectJwt(@RequestBody Credential credential) throws Exception {
 		
 		logger.info("Api : MyUser/getConnectJwt");
-		
-//		String jwt = jwtService.getConnectJwt(credential);
+
 		String jwt = jwtService.getConnectReturnToken(credential);
 		if(jwt==null) {
 			HashMap<String, String> httpResponse = HttpBuilder.getHttpResponse(MyConstant.STATUS, MyConstant.UNAUTHORIZED);

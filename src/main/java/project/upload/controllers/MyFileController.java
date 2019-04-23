@@ -2,15 +2,18 @@ package project.upload.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,6 +40,8 @@ public class MyFileController {
 
 	@Autowired
 	private MyFileServiceInterface myFileService;
+	
+	final static Logger logger = Logger.getLogger(MyFileController.class);
 
 	//Inutile si pas utilisation de myFileRepository dans controller
 	//	public MyFileController(MyFileRepository myFileRepository) {
@@ -78,6 +83,37 @@ public class MyFileController {
 		header.add("Expires", "0");
 
 		Path path = Paths.get(file.getAbsolutePath());
+		
+		Resource resource = null;
+		try {
+		resource = new UrlResource(path.toUri());
+		}catch(MalformedURLException ex) {
+			logger.error("MalformedURLException : " + ex);
+		}
+		return ResponseEntity.status(HttpStatus.OK)
+				.headers(header)
+				.contentLength(file.length())
+				.contentType(MediaType.parseMediaType("application/octet-stream"))
+				.body(resource);
+	}
+	
+	//méthode fonctionnel mais pas utilisé car la taille des fichiers est limitée
+	//conversion du multipartfile en byte...
+	//http://localhost:8080/MyFile/downloadingMyFile2?fichier= myFileId
+	@RequestMapping(path = "/MyFile/downloadingMyFile2", method = RequestMethod.GET)
+	public ResponseEntity<Resource> downloadingMyFile2(@RequestHeader String token, @RequestParam("fichier") Long id) throws IOException{
+
+		MyFileDto myFileDto = myFileService.getDownLoadingMyFileDto(token, id);
+
+		File file = new File(myFileDto.getPath());
+
+		HttpHeaders header = new HttpHeaders();
+		header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + myFileDto.getName());
+		header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		header.add("Pragma", "no-cache");
+		header.add("Expires", "0");
+
+		Path path = Paths.get(file.getAbsolutePath());
 		ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
 		return ResponseEntity.status(HttpStatus.OK)
@@ -85,7 +121,6 @@ public class MyFileController {
 				.contentLength(file.length())
 				.contentType(MediaType.parseMediaType("application/octet-stream"))
 				.body(resource);
-
 	}
 
 }
